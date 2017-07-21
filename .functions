@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+
+# Define common custom CLI-, Git-, and NPM-related functions
+commandExists () {
+	type "$1" &> /dev/null
+}
+
+fs () {
+
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh
+	else
+		local arg=-sh
+	fi
+
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@"
+	else
+		du $arg .[^.]* ./*
+	fi
+}
+
+gc () {
+	BRANCH=${@:-${DEVELOPMENT_BRANCH_NAME}}
+
+	git checkout "${BRANCH}"
+}
+
+gcm () {
+	git commit -m "$*"
+}
+
+gcma () {
+	git commit -am "$*"
+}
+
+grsh () {
+	ANCESTOR=${1:-1}
+
+	git reset --soft HEAD~$ANCESTOR
+}
+
+gss () {
+	git stash save "$*"
+}
+
+md () {
+	mkdir -p "$@" && cd "$@" || exit
+}
+
+trees () {
+
+	if commandExists tree; then
+		tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
+	else
+		echo 'The `tree` command is not available.'
+	fi
+}
+
+# Define custom CLI-, Git-, and NPM-related functions for use with Invision
+if [ -d "$INVISION_PATH" ]; then
+
+	gpa () {
+		DEFAULT_ALIASES=(inv invc inve2e invui)
+
+		ALIASES=("${*:-${DEFAULT_ALIASES[@]}}")
+		CURRENT_DIRECTORY="$PWD"
+
+		for i in "${ALIASES[@]}"; do
+
+			CUSTOM_ALIAS=${i}
+			CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
+			CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
+
+			RESULT=`eval ${BASH_ALIASES[$CUSTOM_ALIAS]} && gp`
+
+			echo "$CUSTOM_ALIAS:"
+			printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
+			echo -e "\n"
+			echo "$RESULT"
+			echo -e "\n"
+		done
+
+		cd $CURRENT_DIRECTORY || exit
+	}
+
+	nia () {
+		DEFAULT_ALIASES=(invc invui invr invcc invbo invstu invsec invd inve2e inv)
+
+		ALIASES=("${*:-${DEFAULT_ALIASES[@]}}")
+		CURRENT_DIRECTORY="$PWD"
+
+		for i in "${ALIASES[@]}"; do
+
+			CUSTOM_ALIAS=${i}
+			CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
+			CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
+
+			RESULT=`eval ${BASH_ALIASES[$CUSTOM_ALIAS]} && ni`
+
+			echo "$CUSTOM_ALIAS:"
+			printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
+			echo -e "\n"
+			echo "$RESULT"
+			echo -e "\n"
+		done
+
+		cd $CURRENT_DIRECTORY || exit
+	}
+fi

@@ -16,7 +16,7 @@ WEBSITES_PATH="$HOME/Websites"
 		export DEVELOPMENT_BRANCH_NAME='development'
 	fi
 
-	for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+	for file in $HOME/.dotfiles/.{path,bash_prompt,exports,aliases,functions,extra}; do
 		[ -r "$file" ] && [ -f "$file" ] && source "$file"
 	done
 

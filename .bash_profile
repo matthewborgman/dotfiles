@@ -24,8 +24,8 @@ WEBSITES_PATH="$HOME/Websites"
 )
 
 # Include Git completion
-if [ -f "$HOME/git-completion.bash" ]; then
-	source "$HOME/git-completion.bash"
+if [ -f "$HOME/.dotfiles/git-completion.bash" ]; then
+	source "$HOME/.dotfiles/git-completion.bash"
 fi
 
 # Enable tab completion for SSH hostnames, while ignoring wildcards

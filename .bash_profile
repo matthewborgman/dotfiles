@@ -1,27 +1,22 @@
 #!/usr/bin/env bash
 
-INVISION_PATH='/d/projects/invision'
-WEBSITES_PATH="$HOME/Websites"
+export INVISION_PATH='/d/projects/invision'
+export WEBSITES_PATH="$HOME/Websites"
 
 # Include shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`
 # * ~/.extra can be used for other settings you don’t want to commit
-(
-	export INVISION_PATH
-	export WEBSITES_PATH
+if [ -d "$INVISION_PATH" ]; then
+	export DEVELOPMENT_BRANCH_NAME='develop'
+else
+	export DEVELOPMENT_BRANCH_NAME='development'
+fi
 
-	if [ -d "$INVISION_PATH" ]; then
-		export DEVELOPMENT_BRANCH_NAME='develop'
-	else
-		export DEVELOPMENT_BRANCH_NAME='development'
-	fi
+for file in $HOME/.dotfiles/.{path,bash_prompt,exports,aliases,functions,extra}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
 
-	for file in $HOME/.dotfiles/.{path,bash_prompt,exports,aliases,functions,extra}; do
-		[ -r "$file" ] && [ -f "$file" ] && source "$file"
-	done
-
-	unset file;
-)
+unset file;
 
 # Include Git completion
 if [ -f "$HOME/.dotfiles/git-completion.bash" ]; then

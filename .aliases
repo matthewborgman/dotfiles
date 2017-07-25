@@ -30,8 +30,8 @@ fi
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ~='cd ~'
-alias -- -='cd -'
 alias catn='cat -n'
+alias cdp='cd -'
 alias df='df -h'
 alias ebrc="atom ${HOME}/.bash_profile"
 alias gbl='git branch -l'

@@ -34,6 +34,12 @@ gcma () {
 	git commit -am "$*"
 }
 
+grhh () {
+	ANCESTOR=${1:-0}
+
+	git reset --hard HEAD~$ANCESTOR
+}
+
 grsh () {
 	ANCESTOR=${1:-1}
 

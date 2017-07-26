@@ -2,10 +2,10 @@
 
 # Define common custom CLI-, Git-, and NPM-related functions
 buf () {
-    FILENAME=$1
-    FILETIME=$(date +%Y%m%d_%H%M)
+	FILENAME=$1
+	FILETIME=$(date +%Y%m%d_%H%M)
 
-    cp -a "${FILENAME}" "${FILENAME}-${FILETIME}"
+	cp -a "${FILENAME}" "${FILENAME}-${FILETIME}"
 }
 
 commandExists () {

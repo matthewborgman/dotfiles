@@ -57,6 +57,10 @@ gss () {
 	git stash save "$*"
 }
 
+lsgrep () {
+	ls | grep "$*"
+}
+
 md () {
 	mkdir -p "$@" && cd "$@" || exit
 }

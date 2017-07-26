@@ -27,6 +27,9 @@ else
 fi
 
 # Define CLI-, Git-, and NPM-related aliases
+# * `map` usage:
+#   - Description: List all directories containing a file
+#   - Example: `find . -name .gitattributes | map dirname`
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ~='cd ~'
@@ -51,9 +54,9 @@ alias gsl='git stash list'
 alias gsp='git stash pop'
 alias h='history'
 alias lbp=". ${HOME}/.dotfiles/.bash_profile"
-alias map='xargs -n1' # e.g. `find . -name .gitattributes | map dirname` to list all directories containing a file
 alias ls="ls -ahl ${COLOR_FLAG}"
 alias lst="ls -ahlt ${COLOR_FLAG}"
+alias map='xargs -n1'
 alias ni='npm install --loglevel error'
 alias nl='npm link'
 alias nrl='npm run lint'

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Define Invision-related aliases
+# Define Invision- and personal project-related aliases
 if [ -d "$INVISION_PATH" ]; then
 
 	alias inv='cd /d/projects/invision'
@@ -13,6 +13,9 @@ if [ -d "$INVISION_PATH" ]; then
 	alias invsec='cd /d/projects/invision-security'
 	alias invstu='cd /d/projects/invision-studio'
 	alias invui='cd /d/projects/invision-ui'
+elif [ -d "$WEBSITES_PATH" ]; then
+
+	alias websites="cd $WEBSITES_PATH"
 fi
 
 # Detect which `ls` flavor is in use: GNU `ls` or macOS `ls`

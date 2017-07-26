@@ -15,6 +15,8 @@ if [ -d "$INVISION_PATH" ]; then
 	alias invui='cd /d/projects/invision-ui'
 elif [ -d "$WEBSITES_PATH" ]; then
 
+	alias puma="cd $WEBSITES_PATH/go.puma.com"
+	alias sungem="cd $WEBSITES_PATH/sungemcms.com"
 	alias websites="cd $WEBSITES_PATH"
 fi
 

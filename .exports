@@ -21,6 +21,9 @@ export MANPAGER='less -X'
 # NOTE: Append "\nmysql> " to insert a new line
 export MYSQL_PS1="\u@\h [\d]> "
 
+# Configure `nvm`
+export NVM_DIR="$HOME/.nvm"
+
 # Configure new shells to use history from all previous shells and not just the "last window closed" and use a custom prompt
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 

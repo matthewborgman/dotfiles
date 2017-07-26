@@ -86,9 +86,11 @@ if [ "$PLATFORM" == 'mac' ] && [ -e "$HOME/.dotfiles/.iterm2_shell_integration.b
 	source "$HOME/.dotfiles/.iterm2_shell_integration.bash"
 fi
 
-# Use NVM for Node.js version management
-if [ -e "$HOME/.nvm/nvm.sh" ]; then
-	source "$HOME/.nvm/nvm.sh"
+# Use NVM for Node.js version management and include completion
+if [ -e "$NVM_DIR" ]; then
+
+	[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+	[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 fi
 
 # Enable tab completion for SSH hostnames, while ignoring wildcards

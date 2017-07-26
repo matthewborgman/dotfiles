@@ -1,6 +1,42 @@
 #!/usr/bin/env bash
 
+detectPlatform () {
+
+	PLATFORM=
+	UNAME_RESULT=`uname -s`
+
+	case $UNAME_RESULT in
+		CYGWIN*)
+			PLATFORM=linux-win
+		;;
+		Darwin*)
+			PLATFORM=mac
+		;;
+		FreeBSD*)
+			PLATFORM=freebsd
+		;;
+		Linux*)
+			PLATFORM=linux
+		;;
+		MINGW*)
+			PLATFORM=linux-win
+		;;
+		MSYS*)
+			PLATFORM=linux-win
+		;;
+		Windows*)
+			PLATFORM=windows
+		;;
+		*)
+			PLATFORM=unknown
+		;;
+	esac
+
+	echo $PLATFORM
+}
+
 export INVISION_PATH='/d/projects/invision'
+export PLATFORM=$(detectPlatform)
 export WEBSITES_PATH="$HOME/Websites"
 
 # Include shell dotfiles, and then some:

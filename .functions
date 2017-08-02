@@ -76,6 +76,13 @@ gcma () {
 	git commit -am "$*"
 }
 
+# NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-commits-since
+gcs () {
+	SINCE=${@:-"last week"}
+
+	git log --pretty='%an - %s' --after="@{$SINCE}"
+}
+
 # grhh () {
 # 	ANCESTOR=${1:-0}
 #

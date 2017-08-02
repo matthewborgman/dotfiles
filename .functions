@@ -60,6 +60,14 @@ gc () {
 	git checkout "${BRANCH}"
 }
 
+# NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-delta
+gdlt () {
+	BRANCH=${1:-${DEVELOPMENT_BRANCH_NAME}}
+	FILTER=${2:-ACM}
+
+	git diff --name-only --diff-filter=${FILTER} "${BRANCH}"
+}
+
 gcm () {
 	git commit -m "$*"
 }

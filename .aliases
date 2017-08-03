@@ -45,6 +45,7 @@ alias cdp='cd -'
 alias df='df -h'
 alias ebp="atom ${HOME}/.dotfiles/.bash_profile"
 alias gbl='git branch -l'
+alias gbls='git for-each-ref --sort=-committerdate refs/heads/ --format="%(HEAD) %(committerdate:local) %09 %(refname:short)"'
 alias gcd="git checkout ${DEVELOPMENT_BRANCH_NAME}"
 alias gcf='git clean -f'
 alias gcp='git checkout -'

@@ -83,6 +83,10 @@ gcs () {
 	git log --pretty='%an - %s' --after="@{$SINCE}"
 }
 
+glf () {
+	git log -- "$1"
+}
+
 # grhh () {
 # 	ANCESTOR=${1:-0}
 #

@@ -87,6 +87,13 @@ glf () {
 	git log -- "$1"
 }
 
+# NOTE: Adopted from https://stackoverflow.com/a/6658352
+gptch () {
+	ANCESTOR=${1:-1}
+
+	git format-patch -${ANCESTOR} HEAD
+}
+
 # grhh () {
 # 	ANCESTOR=${1:-0}
 #

@@ -101,13 +101,6 @@ gcma () {
 	git commit -am "$*"
 }
 
-# NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-commits-since
-gcs () {
-	SINCE=${@:-"last week"}
-
-	git log --pretty='%an - %s' --after="@{$SINCE}"
-}
-
 # NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-delta
 gdlt () {
 	BRANCH=${1:-${DEVELOPMENT_BRANCH_NAME}}
@@ -118,6 +111,13 @@ gdlt () {
 
 glf () {
 	git log -- "$1"
+}
+
+# NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-commits-since
+gls () {
+	SINCE=${@:-"last week"}
+
+	git log --pretty='%an - %s' --after="@{$SINCE}"
 }
 
 # NOTE: Adopted from https://stackoverflow.com/a/6658352

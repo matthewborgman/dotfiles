@@ -57,26 +57,32 @@ fs () {
 # NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-archive-file
 garchv () {
 	ARCHIVE_NAME=$(basename $(pwd))
-	BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+	BRANCH_FULL_NAME=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+	BRANCH_TYPE_DELIMITER='--'
 
-	if [[ $BRANCH = tags* ]]; then
-		BRANCH=$(git describe)
-		CONFIRMATION_MESSAGE="Archive for tag \"${BRANCH}\""
-		FILENAME=$ARCHIVE_NAME.$BRANCH.zip
+	if [[ $BRANCH_FULL_NAME = tags* ]]; then
+		BRANCH_FULL_NAME=$(git describe)
+		CONFIRMATION_MESSAGE="Archive for tag \"${BRANCH_FULL_NAME}\""
+
+		BRANCH_ABBREVIATED_NAME=${BRANCH_FULL_NAME/\//$BRANCH_TYPE_DELIMITER}
+
+		FILENAME=$ARCHIVE_NAME.$BRANCH_ABBREVIATED_NAME.zip
 	else
-		CONFIRMATION_MESSAGE="Archive for branch \"${BRANCH}\""
+		CONFIRMATION_MESSAGE="Archive for branch \"${BRANCH_FULL_NAME}\""
 		VERSION=$(git describe --always --long)
 
-		if [ "$BRANCH" = "master" ]; then
+		BRANCH_ABBREVIATED_NAME=${BRANCH_FULL_NAME/\//$BRANCH_TYPE_DELIMITER}
+
+		if [ "$BRANCH_FULL_NAME" = "master" ]; then
 			FILENAME=$ARCHIVE_NAME.$VERSION.zip
 		else
-			FILENAME=$ARCHIVE_NAME.$VERSION.$BRANCH.zip
+			FILENAME=$ARCHIVE_NAME.$VERSION.$BRANCH_ABBREVIATED_NAME.zip
 		fi
 	fi
 
 	OUTPUT=$(pwd)/$FILENAME
 
-	git archive --format zip --output $OUTPUT $BRANCH
+	git archive --format zip --output $OUTPUT $BRANCH_FULL_NAME
 
 	echo "$CONFIRMATION_MESSAGE saved to \"$FILENAME\" (`du -h $OUTPUT | cut -f1`)"
 }

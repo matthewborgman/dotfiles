@@ -56,6 +56,7 @@ alias gmd="git merge --commit --log --no-ff ${DEVELOPMENT_BRANCH_NAME}"
 alias gp='git pull'
 alias gpo='git pull origin'
 alias gr='git for-each-ref --count=5 --sort=-committerdate refs/heads/ --format="%(refname:short)"'
+alias grd="git rebase ${DEVELOPMENT_BRANCH_NAME}"
 alias grep='grep -n --color=auto'
 alias gs='git status'
 alias gsl='git stash list'

@@ -136,7 +136,11 @@ gptch () {
 grsh () {
 	ANCESTOR=${1:-1}
 
-	git reset --soft HEAD~$ANCESTOR
+	if [[ $ANCESTOR =~ ^[0-9]+$ ]]; then
+		ANCESTOR=HEAD~${ANCESTOR}
+	fi
+
+	git reset --soft $ANCESTOR
 }
 
 gss () {

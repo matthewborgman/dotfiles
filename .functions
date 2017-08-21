@@ -154,6 +154,16 @@ gss () {
 	git stash save "$*"
 }
 
+gtd () {
+	SPECIFIED_TAG=$1
+
+	if [ -z "$SPECIFIED_TAG" ]; then
+		SPECIFIED_TAG=$(git describe --abbrev=0)
+	fi
+
+	git tag --delete $SPECIFIED_TAG
+}
+
 lsgrep () {
 	ls | grep "$*"
 }

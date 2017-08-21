@@ -60,6 +60,7 @@ alias grep='grep -n --color=auto'
 alias gs='git status'
 alias gsl='git stash list'
 alias gsp='git stash pop'
+alias gtl='git describe --abbrev=0'
 alias h='history'
 alias lbp=". ${HOME}/.dotfiles/.bash_profile"
 alias ls="ls -ahl ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"

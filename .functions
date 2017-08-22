@@ -172,6 +172,10 @@ md () {
 	mkdir -p "$@" && cd "$@" || exit
 }
 
+psgrep () {
+	ps auwx | grep -i "$*"
+}
+
 trees () {
 
 	if commandExists tree; then

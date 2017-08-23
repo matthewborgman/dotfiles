@@ -61,6 +61,7 @@ garchv () {
 	BRANCH_TYPE_DELIMITER='--'
 
 	if [[ $BRANCH_FULL_NAME = tags* ]]; then
+
 		BRANCH_FULL_NAME=$(git describe)
 		CONFIRMATION_MESSAGE="Archive for tag \"${BRANCH_FULL_NAME}\""
 
@@ -68,6 +69,7 @@ garchv () {
 
 		FILENAME=$ARCHIVE_NAME.$BRANCH_ABBREVIATED_NAME.zip
 	else
+
 		CONFIRMATION_MESSAGE="Archive for branch \"${BRANCH_FULL_NAME}\""
 		VERSION=$(git describe --always --long)
 
@@ -91,6 +93,7 @@ gc () {
 	BRANCH=${@:-${DEVELOPMENT_BRANCH_NAME}}
 
 	if [[ $BRANCH =~ ^[0-9]+$ ]]; then
+
 		NUM_BRANCHES_LIMIT=$((BRANCH + 1))
 
 		BRANCH=$(git for-each-ref --count ${NUM_BRANCHES_LIMIT} --sort=-committerdate refs/heads/ --format="%(refname:short)" | tail -1)
@@ -144,12 +147,13 @@ gptch () {
 gptcha () {
 	PATCHES=${@}
 
-	if [[ -z "$PATCHES" ]]; then
+	if [ -z "$PATCHES" ]; then
+
 		PATCHES=$(find . -maxdepth 1 -name "*.patch")
 		PATCHES=${PATCHES[@]}
 	fi
 
-	if [[ -n "$PATCHES" ]]; then
+	if [ -n "$PATCHES" ]; then
 		git apply $PATCHES
 	fi
 }

@@ -140,6 +140,20 @@ gptch () {
 	git format-patch -${ANCESTOR} HEAD
 }
 
+# NOTE: Patches, unless explicitly specified, will be found and applied in alphabetical order by default
+gptcha () {
+	PATCHES=${@}
+
+	if [[ -z "$PATCHES" ]]; then
+		PATCHES=$(find . -maxdepth 1 -name "*.patch")
+		PATCHES=${PATCHES[@]}
+	fi
+
+	if [[ -n "$PATCHES" ]]; then
+		git apply $PATCHES
+	fi
+}
+
 # grhh () {
 # 	ANCESTOR=${1:-0}
 #

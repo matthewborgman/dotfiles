@@ -90,6 +90,12 @@ garchv () {
 gc () {
 	BRANCH=${@:-${DEVELOPMENT_BRANCH_NAME}}
 
+	if [[ $BRANCH =~ ^[0-9]+$ ]]; then
+		NUM_BRANCHES_LIMIT=$((BRANCH + 1))
+
+		BRANCH=$(git for-each-ref --count ${NUM_BRANCHES_LIMIT} --sort=-committerdate refs/heads/ --format="%(refname:short)" | tail -1)
+	fi
+
 	git checkout "${BRANCH}"
 }
 

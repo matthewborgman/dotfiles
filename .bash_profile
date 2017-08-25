@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
+source "$HOME/.dotfiles/functions/bootstrap.bash"
+
 export DOTFILES_PATH="$HOME/.dotfiles"
 export INVISION_PATH='/d/projects/invision'
 export PLATFORM=$(detectPlatform)
 export WEBSITES_PATH="$HOME/Websites"
-
-source "${DOTFILES_PATH}/functions/bootstrap.bash"
 
 # Include shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`

@@ -16,7 +16,7 @@ else
 	export DEVELOPMENT_BRANCH_NAME='development'
 fi
 
-for file in $HOME/.dotfiles/.{path,bash_prompt,exports,aliases,functions,extra}; do
+for file in $DOTFILES_PATH/.{path,bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 
@@ -45,13 +45,13 @@ for option in autocd globstar; do
 done
 
 # Include Git completion
-if [ -e "$HOME/.dotfiles/git-completion.bash" ]; then
-	source "$HOME/.dotfiles/git-completion.bash"
+if [ -e "$DOTFILES_PATH/git-completion.bash" ]; then
+	source "$DOTFILES_PATH/git-completion.bash"
 fi
 
 # Include iTerm2 integration
-if [ "$PLATFORM" == 'mac' ] && [ -e "$HOME/.dotfiles/.iterm2_shell_integration.bash" ]; then
-	source "$HOME/.dotfiles/.iterm2_shell_integration.bash"
+if [ "$PLATFORM" == 'mac' ] && [ -e "$DOTFILES_PATH/.iterm2_shell_integration.bash" ]; then
+	source "$DOTFILES_PATH/.iterm2_shell_integration.bash"
 fi
 
 # Use NVM for Node.js version management and include completion

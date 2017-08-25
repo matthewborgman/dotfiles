@@ -1,25 +1,5 @@
 #!/usr/bin/env bash
 
-# Define Invision- and personal project-related aliases
-if [ -d "$INVISION_PATH" ]; then
-
-	alias inv='cd /d/projects/invision'
-	alias invbo='cd /d/projects/invision-billingoperations'
-	alias invc='cd /d/projects/invision-core'
-	alias invcc='cd /d/projects/invision-customercare'
-	alias invd='cd /d/projects/invision-documentation'
-	alias inve2e='cd /d/projects/invision-e2e'
-	alias invr='cd /d/projects/invision-reporting'
-	alias invsec='cd /d/projects/invision-security'
-	alias invstu='cd /d/projects/invision-studio'
-	alias invui='cd /d/projects/invision-ui'
-elif [ -d "$WEBSITES_PATH" ]; then
-
-	alias puma="cd $WEBSITES_PATH/go.puma.com"
-	alias sungem="cd $WEBSITES_PATH/sungemcms.com"
-	alias websites="cd $WEBSITES_PATH"
-fi
-
 # Detect which `ls` flavor is in use: GNU `ls` or macOS `ls`
 if ls --color > /dev/null 2>&1; then
 
@@ -33,7 +13,7 @@ else
 	IGNORE_FILES_FLAG=""
 fi
 
-# Define CLI-, Git-, and NPM-related aliases
+# Define CLI-related aliases
 # * `map` usage:
 #   - Description: List all directories containing a file
 #   - Example: `find . -name .gitattributes | map dirname`
@@ -43,34 +23,19 @@ alias ~='cd ~'
 alias catn='cat -n'
 alias cdp='cd -'
 alias df='df -h'
-alias ebp="atom ${HOME}/.dotfiles/.bash_profile"
-alias gbl='git branch -l'
-alias gbls='git for-each-ref --sort=-committerdate refs/heads/ --format="%(HEAD) %(committerdate:local) %09 %(refname:short)"'
-alias gcd="git checkout ${DEVELOPMENT_BRANCH_NAME}"
-alias gcf='git clean -f'
-alias gcp='git checkout -'
-alias gd='git diff'
-alias gl='git log'
-alias glg='gl --decorate --oneline --graph --date-order --all'
-alias gmd="git merge --commit --log --no-ff ${DEVELOPMENT_BRANCH_NAME}"
-alias gp='git pull'
-alias gpo='git pull origin'
-alias grd="git rebase ${DEVELOPMENT_BRANCH_NAME}"
+alias ebp="atom ${DOTFILES_PATH}/.bash_profile"
 alias grep='grep -n --color=auto'
-alias gs='git status'
-alias gsl='git stash list'
-alias gsp='git stash pop'
-alias gtl='git describe --abbrev=0'
 alias h='history'
-alias lbp=". ${HOME}/.dotfiles/.bash_profile"
+alias lbp=". ${DOTFILES_PATH}/.bash_profile"
 alias ls="ls -ahl ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"
 alias lst="ls -ahlt ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"
 alias map='xargs -n1'
-alias ni='npm install --loglevel error'
-alias nl='npm link'
-alias nrl='npm run lint'
-alias nrt='npm run test'
-alias ns='npm start'
-alias nsd='npm run start:dev'
 alias path='echo -e ${PATH//:/\\n}'
 alias sudo='sudo '
+
+# Define CLI-, Invision-, and personal project-related aliases
+for file in $DOTFILES_PATH/aliases/*; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+
+unset file;

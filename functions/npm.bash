@@ -21,11 +21,11 @@ if [ -d "$INVISION_PATH" ]; then
 
 			RESULT=`eval ${BASH_ALIASES[$CUSTOM_ALIAS]} && ni`
 
+			echo -e "\n"
 			echo "$CUSTOM_ALIAS:"
 			printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
 			echo -e "\n"
 			echo "$RESULT"
-			echo -e "\n"
 		done
 
 		cd $CURRENT_DIRECTORY || exit

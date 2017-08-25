@@ -153,13 +153,13 @@ if [ -d "$INVISION_PATH" ]; then
 			CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
 			CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
 
-			RESULT=`eval ${BASH_ALIASES[$CUSTOM_ALIAS]} && gp`
+			RESULT=`eval ${BASH_ALIASES[$CUSTOM_ALIAS]} && git fetch --quiet && git merge FETCH_HEAD`
 
+			echo -e "\n"
 			echo "$CUSTOM_ALIAS:"
 			printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
 			echo -e "\n"
 			echo "$RESULT"
-			echo -e "\n"
 		done
 
 		cd $CURRENT_DIRECTORY || exit

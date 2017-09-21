@@ -3,7 +3,7 @@
 source "$HOME/.dotfiles/functions/bootstrap.bash"
 
 export DOTFILES_PATH="$HOME/.dotfiles"
-export INVISION_PATH='/d/projects/invision'
+export INVISION_PATH="$HOME/projects/invision"
 export PLATFORM=$(detectPlatform)
 export WEBSITES_PATH="$HOME/Websites"
 

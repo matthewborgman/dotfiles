@@ -63,7 +63,7 @@ lsgrep () {
 
 ## Make directory and change to it
 md () {
-	mkdir -p "$@" && cd "$@" || exit
+	mkdir -pv "$@" && cd "$@" || exit
 }
 
 ## Search current processes

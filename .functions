@@ -63,7 +63,7 @@ hgrep () {
 
 ## Search the current directory
 lsgrep () {
-	ls | grep "$*"
+	ls | grep -i "$*"
 }
 
 ## Make directory and change to it

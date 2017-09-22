@@ -16,7 +16,6 @@ if commandExists git; then
 	alias glg='gl --decorate --oneline --graph --date-order --all'
 	alias gmd="git merge --commit --log --no-ff ${DEVELOPMENT_BRANCH_NAME}"
 	alias gp='git pull'
-	alias gpo='git pull origin'
 	alias grd="git rebase ${DEVELOPMENT_BRANCH_NAME}"
 	alias gs='git status'
 	alias gsl='git stash list'

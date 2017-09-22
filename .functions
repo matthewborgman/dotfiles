@@ -56,6 +56,11 @@ fs () {
 	fi
 }
 
+## Search history
+hgrep () {
+	history | grep -i "$*"
+}
+
 ## Search the current directory
 lsgrep () {
 	ls | grep "$*"

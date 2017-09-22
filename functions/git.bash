@@ -4,7 +4,8 @@
 
 source "${DOTFILES_PATH}/functions/bootstrap.bash"
 
-# NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-archive-file
+## Archive the current branch or tag for the current repo
+## NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-archive-file
 garchv () {
 	ARCHIVE_NAME=$(basename "$(pwd)")
 	BRANCH_FULL_NAME=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
@@ -39,6 +40,7 @@ garchv () {
 	echo "$CONFIRMATION_MESSAGE saved to \"$FILENAME\" (`du -h $OUTPUT | cut -f1`)"
 }
 
+## Checkout the given branch or relative commit, defaulting to the "development" branch if none specified
 gc () {
 	BRANCH=${@:-${DEVELOPMENT_BRANCH_NAME}}
 
@@ -52,15 +54,18 @@ gc () {
 	git checkout "${BRANCH}"
 }
 
+## Commit the staged files using the given message
 gcm () {
 	git commit -m "$*"
 }
 
+# Ammend the last commit using the given message
 gcma () {
 	git commit -am "$*"
 }
 
-# NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-delta
+## List files that differ in the current branch from the given branch, defaulting to the "development" branch if none specified
+## NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-delta
 gdlt () {
 	BRANCH=${1:-${DEVELOPMENT_BRANCH_NAME}}
 	FILTER=${2:-ACM}
@@ -68,10 +73,12 @@ gdlt () {
 	git diff --name-only --diff-filter=${FILTER} "${BRANCH}"
 }
 
+## Display a log of commits for the given file
 glf () {
 	git log -- "$1"
 }
 
+## Display a log of commits by the current user
 glm () {
 	GIT_USERNAME=$(git config user.name)
 	NUM_COMMITS=${1:-20}
@@ -79,21 +86,24 @@ glm () {
 	git log --author="$GIT_USERNAME" --max-count=$NUM_COMMITS
 }
 
-# NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-commits-since
+## Display a log of commits since a given time, defaulting to last week if none specified
+## NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-commits-since
 gls () {
 	SINCE=${@:-"last week"}
 
 	git log --pretty='%an - %s' --after="@{$SINCE}"
 }
 
-# NOTE: Adopted from https://stackoverflow.com/a/6658352
+## Create a patch from commits to the current branch relative to the most recent commit, defaulting to the 1 prior if none specified
+## NOTE: Adopted from https://stackoverflow.com/a/6658352
 gptch () {
 	ANCESTOR=${1:-1}
 
 	git format-patch -${ANCESTOR} HEAD
 }
 
-# NOTE: Patches, unless explicitly specified, will be found and applied in alphabetical order by default
+## Apply the given patches to the current branch, defaulting to searching the current directory for any if none specified
+## NOTE: Patches, unless explicitly specified, will be found and applied in alphabetical order by default
 gptcha () {
 	PATCHES=${@}
 
@@ -114,6 +124,7 @@ gptcha () {
 # 	git reset --hard HEAD~$ANCESTOR
 # }
 
+## Reset the current branch to the given commit relative to the most recent, defaulting to the 1 prior if none specified, but leaving the index and working tree untouched
 grsh () {
 	ANCESTOR=${1:-1}
 
@@ -124,10 +135,12 @@ grsh () {
 	git reset --soft $ANCESTOR
 }
 
+## Stash any modifications to the current repo
 gss () {
 	git stash save "$*"
 }
 
+## Delete the given tag, defaulting to the most recent if none specified
 gtd () {
 	SPECIFIED_TAG=$1
 
@@ -141,6 +154,7 @@ gtd () {
 # Define functions for use with Invision
 if [ -d "$INVISION_PATH" ]; then
 
+	## Pull into each of the repos
 	gpa () {
 		DEFAULT_ALIASES=(inv invc inve2e invui)
 

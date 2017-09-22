@@ -6,10 +6,10 @@ source "${DOTFILES_PATH}/functions/bootstrap.bash"
 
 if commandExists npm; then
 
-	alias ni='npm install --loglevel error'
-	alias nl='npm link'
-	alias nrl='npm run lint'
-	alias nrt='npm run test'
-	alias ns='npm start'
-	alias nsd='npm run start:dev'
+	alias ni='npm install --loglevel error'	# ni:	Install packages
+	alias nl='npm link'						# nl:	Link packages
+	alias nrl='npm run lint'				# nrl:	Run lint tests
+	alias nrt='npm run test'				# nrt:	Run unit tests
+	alias ns='npm start'					# ns:	"Start"
+	alias nsd='npm run start:dev'			# nsd:	"Start" in development mode
 fi

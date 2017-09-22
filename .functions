@@ -4,6 +4,7 @@ source "${DOTFILES_PATH}/functions/bootstrap.bash"
 
 # Define common custom CLI-related functions
 
+## Backup file
 buf () {
 	FILENAME=$1
 	FILETIME=$(date +%Y%m%d_%H%M)
@@ -11,6 +12,7 @@ buf () {
 	cp -a "${FILENAME}" "${FILENAME}-${FILETIME}"
 }
 
+## Extract an archive
 extract () {
 
 	if [ -f $1 ]; then
@@ -38,6 +40,7 @@ extract () {
 	fi
 }
 
+## Display filesize for the given files or the contents of the current directory
 fs () {
 
 	if du -b /dev/null > /dev/null 2>&1; then
@@ -53,18 +56,22 @@ fs () {
 	fi
 }
 
+## Search the current directory
 lsgrep () {
 	ls | grep "$*"
 }
 
+## Make directory and change to it
 md () {
 	mkdir -p "$@" && cd "$@" || exit
 }
 
+v Search current processes
 psgrep () {
 	ps auwx | grep -i "$*"
 }
 
+## Display hierarchy for the current directory
 trees () {
 
 	if commandExists tree; then

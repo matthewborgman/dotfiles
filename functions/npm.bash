@@ -7,6 +7,7 @@ source "${DOTFILES_PATH}/functions/bootstrap.bash"
 # Define functions for use with Invision
 if [ -d "$INVISION_PATH" ]; then
 
+	## Install packages for each of the repos
 	nia () {
 		DEFAULT_ALIASES=(invc invui invr invcc invbo invstu invsec invd inve2e inv)
 

@@ -4,7 +4,7 @@
 
 source "${DOTFILES_PATH}/functions/bootstrap.bash"
 
-# NOTE: Adopted from https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/systemd/systemd.plugin.zsh
+## NOTE: Adopted from https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/systemd/systemd.plugin.zsh
 if commandExists systemctl; then
 
 	SUDO_COMMANDS=(

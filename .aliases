@@ -19,18 +19,18 @@ fi
 #   - Example: `find . -name .gitattributes | map dirname`
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ~='cd ~'
-alias catn='cat -n'
-alias cdp='cd -'
-alias df='df -h'
-alias ebp="atom ${DOTFILES_PATH}/.bash_profile"
-alias grep='grep -n --color=auto'
+alias ~='cd ~'											# ~:	Change to the "home" directory
+alias catn='cat -n'										# catn:	Concatenate files and output with line numbers
+alias cdp='cd -'										# cdp:	Change to the previous directory
+alias df='df -h'										# df:	Display disk usage in a human-readable format by default
+alias ebp="atom ${DOTFILES_PATH}/.bash_profile"			# ebp:	Edit Bash profile
+alias grep='grep -n --color=auto'						# grep:	List matches for a pattern colorized and with line numbers by default
 alias h='history'
-alias lbp=". ${DOTFILES_PATH}/.bash_profile"
-alias ls="ls -ahl ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"
-alias lst="ls -ahlt ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"
-alias map='xargs -n1'
-alias path='echo -e ${PATH//:/\\n}'
+alias lbp=". ${DOTFILES_PATH}/.bash_profile"			# lbp:	Load the Bash profile
+alias ls="ls -ahl ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"	# lst:	List contents for the directory colorized and omitting predetermined files by default
+alias lst="ls -ahlt ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"	# lst:	List contents for the directory sorted by date modified
+alias map='xargs -n1'									# map:	Apply the given command to all given items
+alias path='echo -e ${PATH//:/\\n}'						# path: List the current paths in the environment
 alias sudo='sudo '
 
 # Define CLI-related bindings

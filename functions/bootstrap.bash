@@ -2,10 +2,12 @@
 
 # Define custom functions to be used throughout
 
+## Determine whether a command exists for the current platform
 commandExists () {
 	type "$1" &> /dev/null
 }
 
+## Determine the current platform (e.g. OSX or Windows)
 detectPlatform () {
 
 	PLATFORM=

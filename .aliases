@@ -24,7 +24,7 @@ alias catn='cat -n'										# catn:		Concatenate files and output with line num
 alias cdp='cd -'										# cdp:		Change to the previous directory
 alias df='df -h'										# df:		Display disk usage in a human-readable format by default
 alias ebp="atom ${DOTFILES_PATH}/.bash_profile"			# ebp:		Edit Bash profile
-alias findh='find . -name '								# findh:	List matching files in the current directory
+alias findh='find . -name '								# findh:	List matching files in the current directory and its subdirectories
 alias grep='grep -n --color=auto'						# grep:		List matches for a pattern colorized and with line numbers by default
 alias h='history'
 alias lbp=". ${DOTFILES_PATH}/.bash_profile"			# lbp:		Load the Bash profile

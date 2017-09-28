@@ -135,6 +135,13 @@ grsh () {
 	git reset --soft $ANCESTOR
 }
 
+## Drop the given stash from the current repo
+gsd () {
+	SPECIFIED_STASH=${1:-'stash@{0}'}
+
+	git stash drop $SPECIFIED_STASH
+}
+
 ## Stash any modifications to the current repo
 gss () {
 	git stash save "$*"

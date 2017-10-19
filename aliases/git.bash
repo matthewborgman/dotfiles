@@ -7,6 +7,7 @@ source "${DOTFILES_PATH}/functions/bootstrap.bash"
 if commandExists git; then
 
 	alias gbl='git branch -l'																										# gbl:	List branches in the current repo
+	alias gblm='git branch --merged'																								# gblm:	List branches that have already been merged into the "development" branch in the current repo
 	alias gbn='git rev-parse --abbrev-ref HEAD'																						# gbn:	Display the name of the current branch
 	alias gbls='git for-each-ref --sort=-committerdate refs/heads/ --format="%(HEAD) %(committerdate:local) %09 %(refname:short)"'	# gbls:	List branches in the current repo sorted by commit date
 	alias gcd="git checkout ${DEVELOPMENT_BRANCH_NAME}"																				# gc:	Checkout the "development" branch

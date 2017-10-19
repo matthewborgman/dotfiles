@@ -11,7 +11,7 @@ if commandExists git; then
 	alias gbn='git rev-parse --abbrev-ref HEAD'																						# gbn:	Display the name of the current branch
 	alias gbls='git for-each-ref --sort=-committerdate refs/heads/ --format="%(HEAD) %(committerdate:local) %09 %(refname:short)"'	# gbls:	List branches in the current repo sorted by commit date
 	alias gcd="git checkout ${DEVELOPMENT_BRANCH_NAME}"																				# gc:	Checkout the "development" branch
-	alias gcf='git clean -f'																										# gcf:	Clean the current repo
+	alias gcf='git clean -df'																										# gcf:	Clean the current repo of untracked directories and files
 	alias gcp='git checkout -'																										# gcp:	Checkout the previous branch
 	alias gd='git diff'																												# gd:	Display a diff for the current branch
 	alias gl='git log'																												# gl:	Display a log of commits to the current branch

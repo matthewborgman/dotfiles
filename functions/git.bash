@@ -107,6 +107,19 @@ gls () {
 	git log --pretty='%an - %s' --after="@{$SINCE}"
 }
 
+## Peform a dry-run of merging the given branch into the current one
+gmdr () {
+	BRANCH="$*"
+
+	if [ -z $BRANCH ]; then
+
+		echo '`gmdr` requires the name of the branch to be merged in the dry-run.'
+	else
+
+		git merge --no-commit --no-ff $BRANCH && git merge --abort
+	fi
+}
+
 ## Create a patch from commits to the current branch relative to the most recent commit, defaulting to the 1 prior if none specified
 ## NOTE: Adopted from https://stackoverflow.com/a/6658352
 gptch () {

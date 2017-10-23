@@ -40,6 +40,19 @@ garchv () {
 	echo "$CONFIRMATION_MESSAGE saved to \"$FILENAME\" (`du -h $OUTPUT | cut -f1`)"
 }
 
+## Delete the given branch
+gbd () {
+	BRANCH="$*"
+
+	if [ -z $BRANCH ]; then
+
+		echo '`gbd` requires the name of the branch to be deleted.'
+	else
+
+		git branch -d $BRANCH
+	fi
+}
+
 ## Checkout the given branch or relative commit, defaulting to the "development" branch if none specified
 gc () {
 	BRANCH=${@:-${DEVELOPMENT_BRANCH_NAME}}

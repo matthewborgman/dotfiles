@@ -120,12 +120,16 @@ gmdr () {
 	fi
 }
 
-## Create a patch from commits to the current branch relative to the most recent commit, defaulting to the 1 prior if none specified
+## Create a patch from commits to the current branch since the given commit or relative to the most recent commit, defaulting to the 1 prior if none specified
 ## NOTE: Adopted from https://stackoverflow.com/a/6658352
 gptch () {
 	ANCESTOR=${1:-1}
 
-	git format-patch -${ANCESTOR} HEAD
+	if [[ $ANCESTOR =~ $SHA1_REGEX ]]; then
+		git format-patch $ANCESTOR
+	else
+		git format-patch -${ANCESTOR} HEAD
+	fi
 }
 
 ## Apply the given patches to the current branch, defaulting to searching the current directory for any if none specified

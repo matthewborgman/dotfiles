@@ -5,6 +5,7 @@ source "$HOME/.dotfiles/functions/bootstrap.bash"
 export DOTFILES_PATH="$HOME/.dotfiles"
 export INVISION_PATH="$HOME/projects/invision"
 export PLATFORM=$(detectPlatform)
+export SHA1_REGEX='^[0-9a-f]{40}$'
 export WEBSITES_PATH="$HOME/Websites"
 
 # Include shell dotfiles, and then some:

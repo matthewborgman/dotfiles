@@ -172,9 +172,9 @@ gsd () {
 	git stash drop $SPECIFIED_STASH
 }
 
-## Stash any modifications to the current repo
+## Stash any modifications, including untracked files, to the current repo
 gss () {
-	git stash save "$*"
+	git add . && git stash save "$*"
 }
 
 ## Delete the given tag, defaulting to the most recent if none specified

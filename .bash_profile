@@ -46,13 +46,13 @@ for option in autocd globstar; do
 done
 
 # Include Git completion
-if [ -e "$DOTFILES_PATH/git-completion.bash" ]; then
-	source "$DOTFILES_PATH/git-completion.bash"
+if [ -e "$DOTFILES_PATH/integrations/git-completion.bash" ]; then
+	source "$DOTFILES_PATH/integrations/git-completion.bash"
 fi
 
 # Include iTerm2 integration
-if [ "$PLATFORM" == 'mac' ] && [ -e "$DOTFILES_PATH/.iterm2_shell_integration.bash" ]; then
-	source "$DOTFILES_PATH/.iterm2_shell_integration.bash"
+if [ "$PLATFORM" == 'mac' ] && [ -e "$DOTFILES_PATH/integrations/.iterm2_shell_integration.bash" ]; then
+	source "$DOTFILES_PATH/integrations/.iterm2_shell_integration.bash"
 fi
 
 # Use NVM for Node.js version management and include completion

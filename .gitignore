@@ -1,0 +1,15 @@
+node_modules/
+
+# Ignore OS- and Application-Generated Files
+_notes
+*~
+*.diff
+*.log
+*.patch
+*.swp
+*.vi
+.cache
+.project
+.settings
+.DS_Store
+Thumbs.db

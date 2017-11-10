@@ -193,7 +193,7 @@ if [ -d "$INVISION_PATH" ]; then
 
 	## Pull into each of the repos
 	gpa () {
-		DEFAULT_ALIASES=(inv invc inve2e invui)
+		DEFAULT_ALIASES=(inv invc invcnf invd inve2e invsec invsta invui)
 
 		ALIASES=("${*:-${DEFAULT_ALIASES[@]}}")
 		CURRENT_DIRECTORY="$PWD"

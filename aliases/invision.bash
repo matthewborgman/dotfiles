@@ -13,6 +13,7 @@ if [ -d "$INVISION_PATH" ]; then
 	alias inve2e="cd $INVISION_PATH/../invision-e2e"				# inve2e:	Change to the Invision E2E directory
 	alias invr="cd $INVISION_PATH/../invision-reporting"			# invr:		Change to the Invision Reporting directory
 	alias invsec="cd $INVISION_PATH/../invision-security"			# invsec:	Change to the Invision Security directory
+	alias invsta="cd $INVISION_PATH/../invision-starter"			# invsta:	Change to the Invision Starter directory
 	alias invstu="cd $INVISION_PATH/../invision-studio"				# invstu:	Change to the Invision Studio directory
 	alias invui="cd $INVISION_PATH/../invision-ui"					# invui:	Change to the Invision UI directory
 fi

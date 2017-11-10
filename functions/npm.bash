@@ -9,7 +9,7 @@ if [ -d "$INVISION_PATH" ]; then
 
 	## Install packages for each of the repos
 	nia () {
-		DEFAULT_ALIASES=(invc invui invr invcc invbo invstu invsec invd inve2e inv)
+		DEFAULT_ALIASES=(invc invui invr invcc invcnf invbo invstu invsec invd inve2e inv)
 
 		ALIASES=("${*:-${DEFAULT_ALIASES[@]}}")
 		CURRENT_DIRECTORY="$PWD"

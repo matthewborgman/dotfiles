@@ -8,6 +8,7 @@ if [ -d "$INVISION_PATH" ]; then
 	alias invbo="cd $INVISION_PATH/../invision-billingoperations"	# invbo:	Change to the Invision Billing Operations directory
 	alias invc="cd $INVISION_PATH/../invision-core"					# invc:		Change to the Invision Core directory
 	alias invcc="cd $INVISION_PATH/../invision-customercare"		# invcc:	Change to the Invision Customer Care directory
+	alias invcnf="cd $INVISION_PATH/../invision-configuration"		# invcnf:	Change to the Invision Configuration directory
 	alias invd="cd $INVISION_PATH/../invision-documentation"		# invd:		Change to the Invision Documentation directory
 	alias inve2e="cd $INVISION_PATH/../invision-e2e"				# inve2e:	Change to the Invision E2E directory
 	alias invr="cd $INVISION_PATH/../invision-reporting"			# invr:		Change to the Invision Reporting directory

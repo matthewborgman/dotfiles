@@ -1,0 +1,1 @@
+export PATH="$DOTFILES_BIN_PATH:$PATH"

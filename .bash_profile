@@ -2,6 +2,7 @@
 
 source "$HOME/.dotfiles/functions/bootstrap.bash"
 
+export DOTFILES_BIN_PATH="$HOME/.dotfiles/bin"
 export DOTFILES_PATH="$HOME/.dotfiles"
 export INVISION_PATH="$HOME/projects/invision"
 export PLATFORM=$(detectPlatform)
@@ -65,4 +66,11 @@ fi
 # Enable tab completion for SSH hostnames, while ignoring wildcards
 if [ -e "$HOME/.ssh/config" ]; then
 	complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
+fi
+
+# Include TL;DR integration and completion
+TLDR_PATH="$DOTFILES_BIN_PATH/tldr"
+
+if [ -e "$DOTFILES_PATH/integrations/tldr-integration.bash" ] && [ ! -x "$TLDR_PATH" ]; then
+	cp "$DOTFILES_PATH/integrations/tldr-integration.bash" "$TLDR_PATH" && chmod +x "$TLDR_PATH"
 fi

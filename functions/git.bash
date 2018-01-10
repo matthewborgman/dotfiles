@@ -148,11 +148,15 @@ gptcha () {
 	fi
 }
 
-# grhh () {
-# 	ANCESTOR=${1:-0}
-#
-# 	git reset --hard HEAD~$ANCESTOR
-# }
+grhh () {
+	ANCESTOR=${1:-0}
+
+	if [[ $ANCESTOR =~ ^[0-9]+$ ]]; then
+		ANCESTOR=HEAD~${ANCESTOR}
+	fi
+
+	git reset --hard $ANCESTOR
+}
 
 ## Reset the current branch to the given commit relative to the most recent, defaulting to the 1 prior if none specified, but leaving the index and working tree untouched
 grsh () {

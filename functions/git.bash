@@ -193,18 +193,23 @@ if [ -d "$INVISION_PATH" ]; then
 
 	## Pull into each of the repos
 	gpa () {
-		DEFAULT_ALIASES=(inv invc invcnf invd inve2e invsec invsta invui)
-
-		ALIASES=("${*:-${DEFAULT_ALIASES[@]}}")
 		CURRENT_DIRECTORY="$PWD"
 
-		for i in "${ALIASES[@]}"; do
+		for i in "${INVISION_REPO_ALIASES[@]}"; do
 
 			CUSTOM_ALIAS=${i}
 			CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
 			CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
 
-			RESULT=`eval ${BASH_ALIASES[$CUSTOM_ALIAS]} && git fetch --quiet && git merge FETCH_HEAD`
+			eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
+
+			CURRENT_BRANCH=$(gbn)
+
+			if [ "$DEVELOPMENT_BRANCH_NAME" = "$CURRENT_BRANCH" ]; then
+				RESULT=`git fetch --quiet && git merge FETCH_HEAD`
+			else
+				RESULT="Branch '$DEVELOPMENT_BRANCH_NAME' is not checked-out. Skipping..."
+			fi
 
 			echo -e "\n"
 			echo "$CUSTOM_ALIAS:"

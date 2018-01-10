@@ -1,1 +1,4 @@
-export PATH="$DOTFILES_BIN_PATH:$PATH"
+case ":$PATH:" in
+  *":$DOTFILES_BIN_PATH:"*) :;;
+  *) PATH="$DOTFILES_BIN_PATH:$PATH";;
+esac

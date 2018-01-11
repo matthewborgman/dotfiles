@@ -1,4 +1,5 @@
-bin/
+bin/*
+!bin/.gitignore
 node_modules/
 
 # Ignore OS- and Application-Generated Files

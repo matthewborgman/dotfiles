@@ -51,6 +51,7 @@ if [ -d "$INVISION_PATH" ]; then
 
 			case "$CUSTOM_ALIAS" in
 				"inv")
+					eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
 					nlp ${CUSTOM_ALIAS}
 					;;
 				"invc")
@@ -82,10 +83,10 @@ if [ -d "$INVISION_PATH" ]; then
 	}
 
 	nlc () {
-		eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
-
 		CURRENT_LOGLEVEL=`ngll`
 		PROJECT="$*"
+
+		eval ${BASH_ALIASES[$PROJECT]}
 
 		nsll silent
 		nl
@@ -95,10 +96,10 @@ if [ -d "$INVISION_PATH" ]; then
 	}
 
 	nlcu () {
-		eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
-
 		CURRENT_LOGLEVEL=`ngll`
 		PROJECT="$*"
+
+		eval ${BASH_ALIASES[$PROJECT]}
 
 		nsll silent
 		nl
@@ -109,10 +110,10 @@ if [ -d "$INVISION_PATH" ]; then
 	}
 
 	nlp () {
-		eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
-
 		CURRENT_LOGLEVEL=`ngll`
 		PROJECT="$*"
+
+		eval ${BASH_ALIASES[$PROJECT]}
 
 		nsll silent
 		nl

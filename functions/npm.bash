@@ -43,6 +43,8 @@ if [ -d "$INVISION_PATH" ]; then
 	nla () {
 		CURRENT_DIRECTORY="$PWD"
 
+		nua
+
 		for i in "${INVISION_REPO_ALIASES[@]}"; do
 
 			CUSTOM_ALIAS=${i}
@@ -129,5 +131,24 @@ if [ -d "$INVISION_PATH" ]; then
 		nl invision-studio
 
 		nsll $CURRENT_LOGLEVEL
+	}
+
+	## Uninstall packages for each of the repos as well as any installed globally
+	nua () {
+		CURRENT_DIRECTORY="$PWD"
+
+		cd ~ && \
+			npm cache clean && \
+			rm -fR npm
+
+		npm install -g \
+			gulp webpack-dev-server \
+			npm-run-all mocha eslint-watch eslint \
+			rimraf
+
+		cd ${INVISION_PATH}/.. && \
+			rimraf ./{I,i}nvision*/node_modules/
+
+		cd $CURRENT_DIRECTORY || exit
 	}
 fi

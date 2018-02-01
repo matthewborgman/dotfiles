@@ -132,7 +132,7 @@ gptch () {
 	fi
 }
 
-## Apply the given patches to the current branch, defaulting to searching the current directory for any if none specified
+## Apply -- but don't commit -- the given patches to the current branch, defaulting to searching the current directory for any if none specified
 ## NOTE: Patches, unless explicitly specified, will be found and applied in alphabetical order by default
 gptcha () {
 	PATCHES=${@}
@@ -146,6 +146,13 @@ gptcha () {
 	if [ -n "$PATCHES" ]; then
 		git apply $PATCHES
 	fi
+}
+
+## Apply _and_ commit any patches in the current directory to the current branch
+## NOTE: Patches will be found and applied in alphabetical order
+## NOTE: If any conflicts are found when applying a patch, the `-3way` option allows them to be fixed and then resolved by `git am --resolved` to proceed to any remaining patches
+gptchac () {
+	git am -3way *.patch
 }
 
 grhh () {

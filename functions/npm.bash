@@ -62,7 +62,8 @@ if [ -d "$INVISION_PATH" ]; then
 					;;
 				"inve2e")
 					eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
-					npm run install:webDriver
+#					npm run install:webDriver
+					./node_modules/.bin/webdriver-manager update
 					nlp ${CUSTOM_ALIAS}
 					nl invision
 					;;

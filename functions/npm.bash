@@ -133,7 +133,7 @@ if [ -d "$INVISION_PATH" ]; then
 		nsll $CURRENT_LOGLEVEL
 	}
 
-	## Uninstall packages for each of the repos as well as any installed globally
+	## Uninstall packages for each of the repos as well as reinstall any global packages
 	nua () {
 		CURRENT_DIRECTORY="$PWD"
 

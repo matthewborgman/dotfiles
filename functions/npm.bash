@@ -138,6 +138,9 @@ if [ -d "$INVISION_PATH" ]; then
 	nua () {
 		CURRENT_DIRECTORY="$PWD"
 
+		 npm config set cache ~/npm-cache -g && \
+		 npm config set prefix ~/npm -g
+
 		cd ~ && \
 			npm cache clean && \
 			rm -fR npm

@@ -11,6 +11,7 @@ if commandExists npm; then
 	alias nrl='npm run lint'				# nrl:	Run lint tests
 	alias nrsl='npm run stylelint'			# nrsl:	Run stylelint tests
 	alias nrt='npm run test'				# nrt:	Run unit tests
+	alias nrtd='npm run test:debug'			# nrtd:	Run unit tests in debug mode
 	alias ns='npm start'					# ns:	"Start"
 	alias nsd='npm run start:dev'			# nsd:	"Start" in development mode
 fi

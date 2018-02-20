@@ -217,7 +217,11 @@ if [ -d "$INVISION_PATH" ]; then
 			CURRENT_BRANCH=$(gbn)
 
 			if [ "$DEVELOPMENT_BRANCH_NAME" = "$CURRENT_BRANCH" ]; then
-				RESULT=`git fetch --quiet && git merge FETCH_HEAD`
+				if [ -z "$(git status --porcelain)" ]; then
+					RESULT=`git fetch --quiet && git merge FETCH_HEAD`
+				else
+					RESULT="Branch '$CURRENT_BRANCH' does not have a clean working directory. Skipping..."
+				fi
 			else
 				RESULT="Branch '$DEVELOPMENT_BRANCH_NAME' is not checked-out. Skipping..."
 			fi

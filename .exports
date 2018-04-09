@@ -17,10 +17,6 @@ export LESS_TERMCAP_us=$'\e'"[1;32m"
 
 export MANPAGER='less -X'
 
-# Configure `mysql` to use a custom prompt
-# NOTE: Append "\nmysql> " to insert a new line
-export MYSQL_PS1="\u@\h [\d]> "
-
 # Configure `nvm`
 export NVM_DIR="$HOME/.nvm"
 

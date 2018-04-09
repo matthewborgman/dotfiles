@@ -38,7 +38,7 @@ alias sudo='sudo '
 # Define CLI-related bindings
 bind '"\e\e": "sudo !!"'
 
-# Define CLI-, Invision-, and personal project-related aliases
+# Define Git-, Invision-, and NPM-related aliases
 for file in $DOTFILES_PATH/aliases/*; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done

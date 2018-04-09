@@ -8,7 +8,6 @@ export INVISION_PATH="$HOME/projects/invision"
 export INVISION_REPO_ALIASES=(invc invui invbo invcc invcnf invd invr invsta invstu invsec inv inve2e)
 export PLATFORM=$(detectPlatform)
 export SHA1_REGEX='^[0-9a-f]{40}$'
-export WEBSITES_PATH="$HOME/Websites"
 
 # Include shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`

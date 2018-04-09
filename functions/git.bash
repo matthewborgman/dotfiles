@@ -176,11 +176,42 @@ grsh () {
     git reset --soft $ANCESTOR
 }
 
-## Drop the given stash from the current repo
-gsd () {
-    SPECIFIED_STASH=${1:-'stash@{0}'}
+## Apply the given stash, based on its name or zero-based index, from the current repo
+gsa () {
+    SPECIFIED_STASH="$*"
 
-    git stash drop $SPECIFIED_STASH
+    if [ -z $SPECIFIED_STASH ]; then
+
+        echo '`gsa` requires the name (e.g. "stash@{1}") or index (e.g. 1) of the stash to be applied.'
+    else
+
+        if [[ $SPECIFIED_STASH =~ ^[0-9]+$ ]]; then
+            FORMATTED_STASH="stash@{$SPECIFIED_STASH}"
+        else
+            FORMATTED_STASH=$SPECIFIED_STASH
+        fi
+
+        git stash apply $FORMATTED_STASH
+    fi
+}
+
+## Drop the given stash, based on its name or zero-based index, from the current repo
+gsd () {
+    SPECIFIED_STASH="$*"
+
+    if [ -z $SPECIFIED_STASH ]; then
+
+        echo '`gsd` requires the name (e.g. "stash@{1}") or index (e.g. 1) of the stash to be dropped.'
+    else
+
+        if [[ $SPECIFIED_STASH =~ ^[0-9]+$ ]]; then
+            FORMATTED_STASH="stash@{$SPECIFIED_STASH}"
+        else
+            FORMATTED_STASH=$SPECIFIED_STASH
+        fi
+
+        git stash drop $FORMATTED_STASH
+    fi
 }
 
 ## Stash any modifications, including untracked files, to the current repo

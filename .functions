@@ -6,128 +6,128 @@ source "${DOTFILES_PATH}/functions/bootstrap.bash"
 
 ## Backup file
 buf () {
-	FILENAME=$1
-	FILETIME=$(date +%Y%m%d_%H%M)
+    FILENAME=$1
+    FILETIME=$(date +%Y%m%d_%H%M)
 
-	cp -a "${FILENAME}" "${FILENAME}-${FILETIME}"
+    cp -a "${FILENAME}" "${FILENAME}-${FILETIME}"
 }
 
 ## Deduplicate $PATH
 deduplicatePath () {
 
-	if [ -n "$PATH" ]; then
+    if [ -n "$PATH" ]; then
 
-		echo -e "\n"
-		echo 'Original $PATH:'
-		printf '=%.0s' $(seq 1 15)
-		echo -e "\n"
-		path
-		echo -e "\n"
+        echo -e "\n"
+        echo 'Original $PATH:'
+        printf '=%.0s' $(seq 1 15)
+        echo -e "\n"
+        path
+        echo -e "\n"
 
-		old_PATH=$PATH:
-		PATH=
+        old_PATH=$PATH:
+        PATH=
 
-		while [ -n "$old_PATH" ]; do
-			x=${old_PATH%%:*}
+        while [ -n "$old_PATH" ]; do
+            x=${old_PATH%%:*}
 
-			case $PATH: in
-				*:"$x":*) ;;
-				*) PATH=$PATH:$x;;
-			esac
+            case $PATH: in
+                *:"$x":*) ;;
+                *) PATH=$PATH:$x;;
+            esac
 
-			old_PATH=${old_PATH#*:}
-		done
+            old_PATH=${old_PATH#*:}
+        done
 
-		PATH=${PATH#:}
+        PATH=${PATH#:}
 
-		unset old_PATH x
+        unset old_PATH x
 
-		echo 'Deduplicated $PATH:'
-		printf '=%.0s' $(seq 1 19)
-		echo -e "\n"
-		path
-	fi
+        echo 'Deduplicated $PATH:'
+        printf '=%.0s' $(seq 1 19)
+        echo -e "\n"
+        path
+    fi
 }
 
 ## Extract an archive
 extract () {
 
-	if [ -f $1 ]; then
+    if [ -f $1 ]; then
 
-		case $1 in
-			*.tar.bz2)  tar -jxvf $1                        ;;
-			*.tar.gz)   tar -zxvf $1                        ;;
-			*.bz2)      bunzip2 $1                          ;;
-			*.dmg)      hdiutil mount $1                    ;;
-			*.gz)       gunzip $1                           ;;
-			*.tar)      tar -xvf $1                         ;;
-			*.tbz2)     tar -jxvf $1                        ;;
-			*.tgz)      tar -zxvf $1                        ;;
-			*.zip)      unzip $1                            ;;
-			*.ZIP)      unzip $1                            ;;
-			*.pax)      cat $1 | pax -r                     ;;
-			*.pax.Z)    uncompress $1 --stdout | pax -r     ;;
-			*.rar)      unrar x $1                          ;;
-			*.Z)        uncompress $1                       ;;
-			*)          echo "'$1' cannot be extracted/mounted via \`extract\`." ;;
-		esac
-	else
+        case $1 in
+            *.tar.bz2)  tar -jxvf $1                        ;;
+            *.tar.gz)   tar -zxvf $1                        ;;
+            *.bz2)      bunzip2 $1                          ;;
+            *.dmg)      hdiutil mount $1                    ;;
+            *.gz)       gunzip $1                           ;;
+            *.tar)      tar -xvf $1                         ;;
+            *.tbz2)     tar -jxvf $1                        ;;
+            *.tgz)      tar -zxvf $1                        ;;
+            *.zip)      unzip $1                            ;;
+            *.ZIP)      unzip $1                            ;;
+            *.pax)      cat $1 | pax -r                     ;;
+            *.pax.Z)    uncompress $1 --stdout | pax -r     ;;
+            *.rar)      unrar x $1                          ;;
+            *.Z)        uncompress $1                       ;;
+            *)          echo "'$1' cannot be extracted/mounted via \`extract\`." ;;
+        esac
+    else
 
-		echo "'$1' is not a valid file."
-	fi
+        echo "'$1' is not a valid file."
+    fi
 }
 
 ## Display filesize for the given files or the contents of the current directory
 fs () {
 
-	if du -b /dev/null > /dev/null 2>&1; then
-		local arg=-sbh
-	else
-		local arg=-sh
-	fi
+    if du -b /dev/null > /dev/null 2>&1; then
+        local arg=-sbh
+    else
+        local arg=-sh
+    fi
 
-	if [[ -n "$@" ]]; then
-		du $arg -- "$@"
-	else
-		du $arg .[^.]* ./*
-	fi
+    if [[ -n "$@" ]]; then
+        du $arg -- "$@"
+    else
+        du $arg .[^.]* ./*
+    fi
 }
 
 ## Search history
 hgrep () {
-	history | grep -i "$*"
+    history | grep -i "$*"
 }
 
 ## Search the current directory
 lsgrep () {
-	ls | grep -i "$*"
+    ls | grep -i "$*"
 }
 
 ## Make directory and change to it
 md () {
-	mkdir -pv "$@" && cd "$@" || exit
+    mkdir -pv "$@" && cd "$@" || exit
 }
 
 ## Search current processes
 psgrep () {
-	ps auwx | grep -i "$*"
+    ps auwx | grep -i "$*"
 }
 
 ## Display hierarchy for the current directory
 trees () {
 
-	if commandExists tree; then
-		tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
-	else
-		echo 'The `tree` command is not available.'
-	fi
+    if commandExists tree; then
+        tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
+    else
+        echo 'The `tree` command is not available.'
+    fi
 }
 
 # Define CLI-, Invision-, and personal project-related functions
 for file in $DOTFILES_PATH/functions/*; do
-	FILENAME=$(basename "$file")
+    FILENAME=$(basename "$file")
 
-	[ $FILENAME != "bootstrap.bash" ] && [ -r "$file" ] && [ -f "$file" ] && source "$file"
+    [ $FILENAME != "bootstrap.bash" ] && [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 
 unset file

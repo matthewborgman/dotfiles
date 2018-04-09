@@ -14,13 +14,13 @@ export WEBSITES_PATH="$HOME/Websites"
 # * ~/.path can be used to extend `$PATH`
 # * ~/.extra can be used for other settings you don’t want to commit
 if [ -d "$INVISION_PATH" ]; then
-	export DEVELOPMENT_BRANCH_NAME='develop'
+    export DEVELOPMENT_BRANCH_NAME='develop'
 else
-	export DEVELOPMENT_BRANCH_NAME='development'
+    export DEVELOPMENT_BRANCH_NAME='development'
 fi
 
 for file in $DOTFILES_PATH/.{path,bash_prompt,exports,aliases,functions,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+    [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 
 unset file;
@@ -44,34 +44,34 @@ shopt -s checkwinsize
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * Recursive globbing, e.g. `echo **/*.txt`
 for option in autocd globstar; do
-	shopt -s "$option" 2> /dev/null
+    shopt -s "$option" 2> /dev/null
 done
 
 # Include Git completion
 if [ -e "$DOTFILES_PATH/integrations/git-completion.bash" ]; then
-	source "$DOTFILES_PATH/integrations/git-completion.bash"
+    source "$DOTFILES_PATH/integrations/git-completion.bash"
 fi
 
 # Include iTerm2 integration
 if [ "$PLATFORM" == 'mac' ] && [ -e "$DOTFILES_PATH/integrations/.iterm2_shell_integration.bash" ]; then
-	source "$DOTFILES_PATH/integrations/.iterm2_shell_integration.bash"
+    source "$DOTFILES_PATH/integrations/.iterm2_shell_integration.bash"
 fi
 
 # Use NVM for Node.js version management and include completion
 if [ -e "$NVM_DIR" ]; then
 
-	[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-	[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 fi
 
 # Enable tab completion for SSH hostnames, while ignoring wildcards
 if [ -e "$HOME/.ssh/config" ]; then
-	complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
+    complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 fi
 
 # Include TL;DR integration and completion
 TLDR_PATH="$DOTFILES_BIN_PATH/tldr"
 
 if [ -e "$DOTFILES_PATH/integrations/tldr-integration.bash" ] && [ ! -x "$TLDR_PATH" ]; then
-	cp "$DOTFILES_PATH/integrations/tldr-integration.bash" "$TLDR_PATH" && chmod +x "$TLDR_PATH"
+    cp "$DOTFILES_PATH/integrations/tldr-integration.bash" "$TLDR_PATH" && chmod +x "$TLDR_PATH"
 fi

@@ -155,6 +155,7 @@ gptchac () {
     git am -3way *.patch
 }
 
+## Reset the current branch to the given commit relative to the most recent, defaulting to the 1 prior if none specified, _discarding the index and working tree_
 grhh () {
     ANCESTOR=${1:-0}
 
@@ -165,7 +166,7 @@ grhh () {
     git reset --hard $ANCESTOR
 }
 
-## Reset the current branch to the given commit relative to the most recent, defaulting to the 1 prior if none specified, but leaving the index and working tree untouched
+## Reset the current branch to the given commit relative to the most recent, defaulting to the 1 prior if none specified, but _leaving the index and working tree untouched_
 grsh () {
     ANCESTOR=${1:-1}
 

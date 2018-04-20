@@ -51,6 +51,10 @@ if [ -e "$DOTFILES_PATH/integrations/git-completion.bash" ]; then
     source "$DOTFILES_PATH/integrations/git-completion.bash"
 fi
 
+if [ -e "$DOTFILES_PATH/integrations/git-prompt.sh" ]; then
+    source "$DOTFILES_PATH/integrations/git-prompt.sh"
+fi
+
 # Include iTerm2 integration
 if [ "$PLATFORM" == 'mac' ] && [ -e "$DOTFILES_PATH/integrations/.iterm2_shell_integration.bash" ]; then
     source "$DOTFILES_PATH/integrations/.iterm2_shell_integration.bash"

@@ -3,14 +3,19 @@
 # Define custom functions to be used throughout
 
 ## Decorate builtin `cd` to track which Invision version custom functions (e.g. `invcc`) apply to
+## TODO: Refactor `INVISION_VERSION_*` variables usage
 cd () {
     builtin cd "$@"
 
     if [[ $PWD/ = $INVISION_BACKPORT_PATH/* ]]; then
         INVISION_VERSION=${INVISION_VERSIONS[1]}
+        INVISION_VERSION_NPM_CACHE_PATH=${INVISION_VERSION_NPM_CACHE_PATHS[1]}
+        INVISION_VERSION_NPM_MODULES_PATH=${INVISION_VERSION_NPM_MODULES_PATHS[1]}
         INVISION_VERSION_PATH=${INVISION_VERSION_PATHS[1]}
     elif [[ $PWD/ = $INVISION_PATH/* ]]; then
         INVISION_VERSION=${INVISION_VERSIONS[0]}
+        INVISION_VERSION_NPM_CACHE_PATH=${INVISION_VERSION_NPM_CACHE_PATHS[0]}
+        INVISION_VERSION_NPM_MODULES_PATH=${INVISION_VERSION_NPM_MODULES_PATHS[0]}
         INVISION_VERSION_PATH=${INVISION_VERSION_PATHS[0]}
     fi
 }

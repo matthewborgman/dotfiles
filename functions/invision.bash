@@ -153,20 +153,15 @@ if [ -d "$INVISION_PATH" ]; then
 
         if confirmInvisionVersion 'nua'; then
 
-             npm config set cache ~/npm-cache -g && \
-             npm config set prefix ~/npm -g
-
-            cd ~ && \
-                npm cache clean && \
-                rm -fR npm
+             npm cache clean -f $INVISION_VERSION_NPM_CACHE_PATH && \
+                rm -fR $INVISION_VERSION_NPM_MODULES_PATH
 
             npm install -g \
                 gulp webpack-dev-server \
                 npm-run-all mocha eslint-watch eslint \
                 rimraf
 
-            cd ${INVISION_VERSION_PATH} && \
-                rimraf ./{I,i}nvision*/node_modules/
+            rimraf "${INVISION_VERSION_PATH}/{I,i}nvision*/node_modules/"
 
             cd $CURRENT_DIRECTORY
         else

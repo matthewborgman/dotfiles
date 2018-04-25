@@ -8,8 +8,11 @@ export INVISION_BACKPORT_PATH="$HOME/projects/invision-backport"
 export INVISION_PATH="$HOME/projects/invision"
 export INVISION_REPO_ALIASES=(invc invui invbo invcc invcnf invd invr invsta invstu invsec inv inve2e)
 export INVISION_STARTER_ALIAS='invsta'
-export INVISION_VERSIONS=('invision' 'invision-backport')
+export INVISION_VERSION_NPM_CACHE_PATHS=("${INVISION_PATH}/npm-cache" "${INVISION_BACKPORT_PATH}/npm-cache")
+export INVISION_VERSION_NPM_MODULES_PATHS=("${INVISION_PATH}/npm-modules" "${INVISION_BACKPORT_PATH}/npm-modules")
 export INVISION_VERSION_PATHS=($INVISION_PATH $INVISION_BACKPORT_PATH)
+export INVISION_VERSIONS=('invision' 'invision-backport')
+
 export PLATFORM=$(detectPlatform)
 export SHA1_REGEX='^[0-9a-f]{40}$'
 
@@ -19,6 +22,8 @@ export SHA1_REGEX='^[0-9a-f]{40}$'
 if [ -d "$INVISION_PATH" ]; then
     export DEVELOPMENT_BRANCH_NAME='develop'
     export INVISION_VERSION=${INVISION_VERSIONS[0]}
+    export INVISION_VERSION_NPM_CACHE_PATH=${INVISION_VERSION_NPM_CACHE_PATHS[0]}
+    export INVISION_VERSION_NPM_MODULES_PATH=${INVISION_VERSION_NPM_MODULES_PATHS[0]}
     export INVISION_VERSION_PATH=${INVISION_VERSION_PATHS[0]}
 else
     export DEVELOPMENT_BRANCH_NAME='development'

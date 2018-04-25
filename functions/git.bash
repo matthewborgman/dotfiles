@@ -234,6 +234,44 @@ gtd () {
 # Define functions for use with Invision
 if [ -d "$INVISION_PATH" ]; then
 
+    ## Checkout a branch in each of the repos, defaulting to the "development" branch if none specified
+    gca () {
+        CURRENT_DIRECTORY="$PWD"
+        SPECIFIED_BRANCH=${@:-${DEVELOPMENT_BRANCH_NAME}}
+
+        if confirmInvisionVersion 'gca'; then
+
+            for i in "${INVISION_REPO_ALIASES[@]}"; do
+
+                if [[ "$i" = "$INVISION_STARTER_ALIAS" ]]; then
+                    continue;
+                fi
+
+                CUSTOM_ALIAS=${i}
+                CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
+                CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
+
+                eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
+
+                if [ -z "$(git status --porcelain)" ]; then
+                    RESULT=`gc $SPECIFIED_BRANCH`
+                else
+                    RESULT="Branch '`gbn`' does not have a clean working directory. Skipping..."
+                fi
+
+                echo -e "\n"
+                echo "$CUSTOM_ALIAS:"
+                printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
+                echo -e "\n"
+                echo "$RESULT"
+            done
+        else
+            echo 'Aborted `gca` due to incorrect Invision version selected...'
+        fi
+
+        cd $CURRENT_DIRECTORY || exit
+    }
+
     ## Pull into each of the repos
     gpa () {
         CURRENT_DIRECTORY="$PWD"

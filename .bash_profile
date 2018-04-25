@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source "$HOME/.dotfiles/functions/bootstrap.bash"
+
 export DOTFILES_BIN_PATH="$HOME/.dotfiles/bin"
 export DOTFILES_PATH="$HOME/.dotfiles"
 export INVISION_BACKPORT_PATH="$HOME/projects/invision-backport"
@@ -10,8 +12,6 @@ export INVISION_VERSIONS=('invision' 'invision-backport')
 export INVISION_VERSION_PATHS=($INVISION_PATH $INVISION_BACKPORT_PATH)
 export PLATFORM=$(detectPlatform)
 export SHA1_REGEX='^[0-9a-f]{40}$'
-
-source "$HOME/.dotfiles/functions/bootstrap.bash"
 
 # Include shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`

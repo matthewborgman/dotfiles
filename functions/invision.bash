@@ -6,24 +6,42 @@ source "${DOTFILES_PATH}/functions/bootstrap.bash"
 
 if [ -d "$INVISION_PATH" ]; then
 
+    inv ()      { cd ${INVISION_VERSION_PATH}/invision; }                   # inv:      Change to the Invision directory
+    invbo ()    { cd ${INVISION_VERSION_PATH}/invision-billingoperations; } # invbo:    Change to the Invision Billing Operations directory
+    invc ()     { cd ${INVISION_VERSION_PATH}/invision-core; }              # invc:     Change to the Invision Core directory
+    invcc ()    { cd ${INVISION_VERSION_PATH}/invision-customercare; }      # invcc:    Change to the Invision Customer Care directory
+    invcnf ()   { cd ${INVISION_VERSION_PATH}/invision-configuration; }     # invcnf:   Change to the Invision Configuration directory
+    invd ()     { cd ${INVISION_VERSION_PATH}/invision-documentation; }     # invd:     Change to the Invision Documentation directory
+    inve2e ()   { cd ${INVISION_VERSION_PATH}/invision-e2e; }               # inve2e:   Change to the Invision E2E directory
+    invr ()     { cd ${INVISION_VERSION_PATH}/invision-reporting; }         # invr:     Change to the Invision Reporting directory
+    invsec ()   { cd ${INVISION_VERSION_PATH}/invision-security; }          # invsec:   Change to the Invision Security directory
+    invsta ()   { cd ${INVISION_VERSION_PATH}/invision-starter; }           # invsta:   Change to the Invision Starter directory
+    invstu ()   { cd ${INVISION_VERSION_PATH}/invision-studio; }            # invstu:   Change to the Invision Studio directory
+    invui ()    { cd ${INVISION_VERSION_PATH}/invision-ui; }                # invui:    Change to the Invision UI directory
+
     ## Install packages for each of the repos
     nia () {
         CURRENT_DIRECTORY="$PWD"
 
-        for i in "${INVISION_REPO_ALIASES[@]}"; do
+        if confirmInvisionVersion 'nia'; then
 
-            CUSTOM_ALIAS=${i}
-            CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
-            CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
+            for i in "${INVISION_REPO_ALIASES[@]}"; do
 
-            RESULT=`eval ${BASH_ALIASES[$CUSTOM_ALIAS]} && ni`
+                CUSTOM_ALIAS=${i}
+                CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
+                CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
 
-            echo -e "\n"
-            echo "$CUSTOM_ALIAS:"
-            printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
-            echo -e "\n"
-            echo "$RESULT"
-        done
+                RESULT=`eval ${BASH_ALIASES[$CUSTOM_ALIAS]} && ni`
+
+                echo -e "\n"
+                echo "$CUSTOM_ALIAS:"
+                printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
+                echo -e "\n"
+                echo "$RESULT"
+            done
+        else
+            echo 'Aborted `nia` due to incorrect Invision version selected...'
+        fi
 
         cd $CURRENT_DIRECTORY || exit
     }
@@ -32,44 +50,50 @@ if [ -d "$INVISION_PATH" ]; then
     nla () {
         CURRENT_DIRECTORY="$PWD"
 
-        nua
+        if confirmInvisionVersion 'nla'; then
 
-        for i in "${INVISION_REPO_ALIASES[@]}"; do
+            # TODO: Halt processing if `nua` is cancelled or errors
+            nua
 
-            CUSTOM_ALIAS=${i}
-            CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
-            CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
+            for i in "${INVISION_REPO_ALIASES[@]}"; do
 
-            case "$CUSTOM_ALIAS" in
-                "inv")
-                    eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
-                    nlp ${CUSTOM_ALIAS}
-                    ;;
-                "invc")
-                    eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
-                    nl
-                    ;;
-                "inve2e")
-                    eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
-#					npm run install:webDriver
-                    ./node_modules/.bin/webdriver-manager update
-                    nlp ${CUSTOM_ALIAS}
-                    nl invision
-                    ;;
-                "invui")
-                    nlc ${CUSTOM_ALIAS}
-                    ;;
-                *)
-                    nlcu ${CUSTOM_ALIAS}
-                    ;;
-            esac
+                CUSTOM_ALIAS=${i}
+                CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
+                CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
 
-            echo -e "\n"
-            echo "$CUSTOM_ALIAS:"
-            printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
-            echo -e "\n"
-            echo 'Linked'
-        done
+                case "$CUSTOM_ALIAS" in
+                    "inv")
+                        eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
+                        nlp ${CUSTOM_ALIAS}
+                        ;;
+                    "invc")
+                        eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
+                        nl
+                        ;;
+                    "inve2e")
+                        eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
+    #					npm run install:webDriver
+                        ./node_modules/.bin/webdriver-manager update
+                        nlp ${CUSTOM_ALIAS}
+                        nl invision
+                        ;;
+                    "invui")
+                        nlc ${CUSTOM_ALIAS}
+                        ;;
+                    *)
+                        nlcu ${CUSTOM_ALIAS}
+                        ;;
+                esac
+
+                echo -e "\n"
+                echo "$CUSTOM_ALIAS:"
+                printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
+                echo -e "\n"
+                echo 'Linked'
+            done
+        else
+            echo 'Aborted `nla` due to incorrect Invision version selected...'
+        fi
 
         cd $CURRENT_DIRECTORY || exit
     }
@@ -127,21 +151,26 @@ if [ -d "$INVISION_PATH" ]; then
     nua () {
         CURRENT_DIRECTORY="$PWD"
 
-         npm config set cache ~/npm-cache -g && \
-         npm config set prefix ~/npm -g
+        if confirmInvisionVersion 'nua'; then
 
-        cd ~ && \
-            npm cache clean && \
-            rm -fR npm
+             npm config set cache ~/npm-cache -g && \
+             npm config set prefix ~/npm -g
 
-        npm install -g \
-            gulp webpack-dev-server \
-            npm-run-all mocha eslint-watch eslint \
-            rimraf
+            cd ~ && \
+                npm cache clean && \
+                rm -fR npm
 
-        cd ${INVISION_PATH}/.. && \
-            rimraf ./{I,i}nvision*/node_modules/
+            npm install -g \
+                gulp webpack-dev-server \
+                npm-run-all mocha eslint-watch eslint \
+                rimraf
 
-        cd $CURRENT_DIRECTORY || exit
+            cd ${INVISION_VERSION_PATH} && \
+                rimraf ./{I,i}nvision*/node_modules/
+
+            cd $CURRENT_DIRECTORY
+        else
+            echo 'Aborted `nua` due to incorrect Invision version selected...'
+        fi
     }
 fi

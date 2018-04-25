@@ -1,19 +1,25 @@
 #!/usr/bin/env bash
 
-source "$HOME/.dotfiles/functions/bootstrap.bash"
-
 export DOTFILES_BIN_PATH="$HOME/.dotfiles/bin"
 export DOTFILES_PATH="$HOME/.dotfiles"
+export INVISION_BACKPORT_PATH="$HOME/projects/invision-backport"
 export INVISION_PATH="$HOME/projects/invision"
 export INVISION_REPO_ALIASES=(invc invui invbo invcc invcnf invd invr invsta invstu invsec inv inve2e)
+export INVISION_STARTER_ALIAS='invsta'
+export INVISION_VERSIONS=('invision' 'invision-backport')
+export INVISION_VERSION_PATHS=($INVISION_PATH $INVISION_BACKPORT_PATH)
 export PLATFORM=$(detectPlatform)
 export SHA1_REGEX='^[0-9a-f]{40}$'
+
+source "$HOME/.dotfiles/functions/bootstrap.bash"
 
 # Include shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`
 # * ~/.extra can be used for other settings you don’t want to commit
 if [ -d "$INVISION_PATH" ]; then
     export DEVELOPMENT_BRANCH_NAME='develop'
+    export INVISION_VERSION=${INVISION_VERSIONS[0]}
+    export INVISION_VERSION_PATH=${INVISION_VERSION_PATHS[0]}
 else
     export DEVELOPMENT_BRANCH_NAME='development'
 fi

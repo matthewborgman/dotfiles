@@ -238,32 +238,31 @@ if [ -d "$INVISION_PATH" ]; then
     gpa () {
         CURRENT_DIRECTORY="$PWD"
 
-        for i in "${INVISION_REPO_ALIASES[@]}"; do
+        if confirmInvisionVersion 'gpa'; then
 
-            CUSTOM_ALIAS=${i}
-            CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
-            CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
+            for i in "${INVISION_REPO_ALIASES[@]}"; do
 
-            eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
+                CUSTOM_ALIAS=${i}
+                CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
+                CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
 
-            CURRENT_BRANCH=$(gbn)
+                eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
 
-            if [ "$DEVELOPMENT_BRANCH_NAME" = "$CURRENT_BRANCH" ]; then
                 if [ -z "$(git status --porcelain)" ]; then
                     RESULT=`git fetch --quiet && git merge FETCH_HEAD`
                 else
-                    RESULT="Branch '$CURRENT_BRANCH' does not have a clean working directory. Skipping..."
+                    RESULT="Branch '`gbn`' does not have a clean working directory. Skipping..."
                 fi
-            else
-                RESULT="Branch '$DEVELOPMENT_BRANCH_NAME' is not checked-out. Skipping..."
-            fi
 
-            echo -e "\n"
-            echo "$CUSTOM_ALIAS:"
-            printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
-            echo -e "\n"
-            echo "$RESULT"
-        done
+                echo -e "\n"
+                echo "$CUSTOM_ALIAS:"
+                printf '=%.0s' $(seq 1 $CUSTOM_ALIAS_LENGTH)
+                echo -e "\n"
+                echo "$RESULT"
+            done
+        else
+            echo 'Aborted `gpa` due to incorrect Invision version selected...'
+        fi
 
         cd $CURRENT_DIRECTORY || exit
     }

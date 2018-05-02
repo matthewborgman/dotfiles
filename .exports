@@ -18,7 +18,11 @@ export LESS_TERMCAP_us=$'\e'"[1;32m"
 export MANPAGER='less -X'
 
 # Configure `nvm`
-export NVM_DIR="$HOME/.nvm"
+if [ "$PLATFORM" == 'mac' ]; then
+    export NVM_DIR="$HOME/.nvm"
+elif [ "$PLATFORM" == 'linux-win' ]; then
+    export NVM_DIR="$HOME/nvm"
+fi
 
 # Configure new shells to use history from all previous shells and not just the "last window closed" and use a custom prompt
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"

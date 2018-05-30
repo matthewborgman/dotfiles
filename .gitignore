@@ -14,5 +14,6 @@ _notes
 .cache
 .project
 .settings
+.tags
 .DS_Store
 Thumbs.db

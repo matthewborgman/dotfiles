@@ -57,7 +57,7 @@ gbd () {
 gc () {
     BRANCH=${@:-${DEVELOPMENT_BRANCH_NAME}}
 
-    if [[ $BRANCH =~ ^[0-9]+$ ]]; then
+    if [[ $BRANCH =~ $RELATIVE_COMMIT_REGEX ]]; then
 
         NUM_BRANCHES_LIMIT=$((BRANCH + 1))
 
@@ -155,11 +155,13 @@ gptchac () {
     git am -3way *.patch
 }
 
-## Reset the current branch to the given commit relative to the most recent, defaulting to the 1 prior if none specified, _discarding the index and working tree_
+## Reset the current branch to the given commit or relative to the most recent commit, defaulting to the 1 prior if none specified, _discarding the index and working tree_
 grhh () {
     ANCESTOR=${1:-0}
 
-    if [[ $ANCESTOR =~ ^[0-9]+$ ]]; then
+    if [[ $ANCESTOR =~ $SHA1_REGEX ]]; then
+        :
+    elif [[ $ANCESTOR =~ $RELATIVE_COMMIT_REGEX ]]; then
         ANCESTOR=HEAD~${ANCESTOR}
     fi
 
@@ -170,7 +172,7 @@ grhh () {
 grsh () {
     ANCESTOR=${1:-1}
 
-    if [[ $ANCESTOR =~ ^[0-9]+$ ]]; then
+    if [[ $ANCESTOR =~ $RELATIVE_COMMIT_REGEX ]]; then
         ANCESTOR=HEAD~${ANCESTOR}
     fi
 
@@ -186,7 +188,7 @@ gsa () {
         echo '`gsa` requires the name (e.g. "stash@{1}") or index (e.g. 1) of the stash to be applied.'
     else
 
-        if [[ $SPECIFIED_STASH =~ ^[0-9]+$ ]]; then
+        if [[ $SPECIFIED_STASH =~ $RELATIVE_COMMIT_REGEX ]]; then
             FORMATTED_STASH="stash@{$SPECIFIED_STASH}"
         else
             FORMATTED_STASH=$SPECIFIED_STASH
@@ -205,7 +207,7 @@ gsd () {
         echo '`gsd` requires the name (e.g. "stash@{1}") or index (e.g. 1) of the stash to be dropped.'
     else
 
-        if [[ $SPECIFIED_STASH =~ ^[0-9]+$ ]]; then
+        if [[ $SPECIFIED_STASH =~ $RELATIVE_COMMIT_REGEX ]]; then
             FORMATTED_STASH="stash@{$SPECIFIED_STASH}"
         else
             FORMATTED_STASH=$SPECIFIED_STASH

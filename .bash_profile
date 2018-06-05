@@ -14,6 +14,7 @@ export INVISION_VERSION_PATHS=($INVISION_PATH $INVISION_BACKPORT_PATH)
 export INVISION_VERSIONS=('invision' 'invision-backport')
 
 export PLATFORM=$(detectPlatform)
+export RELATIVE_COMMIT_REGEX='^[0-9]+$'
 export SHA1_REGEX='^[0-9a-f]{40}$'
 
 # Include shell dotfiles, and then some:

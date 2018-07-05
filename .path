@@ -2,3 +2,8 @@ case ":$PATH:" in
   *":$DOTFILES_BIN_PATH:"*) :;;
   *) PATH="$DOTFILES_BIN_PATH:$PATH";;
 esac
+
+case ":$PATH:" in
+  *":$INVISION_GLOBAL_NPM_MODULES_PATH:"*) :;;
+  *) PATH="$INVISION_GLOBAL_NPM_MODULES_PATH:$PATH";;
+esac

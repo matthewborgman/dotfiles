@@ -5,6 +5,7 @@ source "$HOME/.dotfiles/functions/bootstrap.bash"
 export DOTFILES_BIN_PATH="$HOME/.dotfiles/bin"
 export DOTFILES_PATH="$HOME/.dotfiles"
 export INVISION_BACKPORT_PATH="$HOME/projects/invision-backport"
+export INVISION_GLOBAL_NPM_MODULES_PATH="$HOME/npm-modules"
 export INVISION_PATH="$HOME/projects/invision"
 export INVISION_REPO_ALIASES=(invc invui invbo invcc invcnf invd invr invsta invstu invsec inv inve2e)
 export INVISION_STARTER_ALIAS='invsta'

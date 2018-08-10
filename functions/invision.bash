@@ -7,6 +7,7 @@ source "${DOTFILES_PATH}/functions/bootstrap.bash"
 if [ -d "$INVISION_PATH" ]; then
 
     inv ()      { cd ${INVISION_VERSION_PATH}/invision; }                   # inv:      Change to the Invision directory
+    inva ()     { cd ${INVISION_VERSION_PATH}/invision-authentication; }    # inva:     Change to the Invision Authentication directory
     invbo ()    { cd ${INVISION_VERSION_PATH}/invision-billingoperations; } # invbo:    Change to the Invision Billing Operations directory
     invc ()     { cd ${INVISION_VERSION_PATH}/invision-core; }              # invc:     Change to the Invision Core directory
     invcc ()    { cd ${INVISION_VERSION_PATH}/invision-customercare; }      # invcc:    Change to the Invision Customer Care directory
@@ -135,6 +136,7 @@ if [ -d "$INVISION_PATH" ]; then
         nl
         nl invision-core
         nl invision-ui
+        nl invision-authentication
         nl invision-billingoperations
         nl invision-customercare
         nl invision-configuration

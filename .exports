@@ -17,6 +17,11 @@ export LESS_TERMCAP_us=$'\e'"[1;32m"
 
 export MANPAGER='less -X'
 
+# Configure Node.js to increase memory limit
+if [ -d "$INVISION_PATH" ]; then
+    export NODE_OPTIONS=--max_old_space_size=4096
+fi
+
 # Configure `nvm`
 if [ "$PLATFORM" == 'mac' ]; then
     export NVM_DIR="$HOME/.nvm"

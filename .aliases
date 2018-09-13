@@ -20,7 +20,6 @@ fi
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ~='cd ~'											# ~:		Change to the "home" directory
-alias catn='cat -n'										# catn:		Concatenate files and output with line numbers
 alias cdp='cd -'										# cdp:		Change to the previous directory
 alias df='df -h'										# df:		Display disk usage in a human-readable format by default
 alias dotfiles="cd ${DOTFILES_PATH}"					# dotfiles:	Change to the ".dotfiles" directory
@@ -34,6 +33,11 @@ alias lst="ls -ahlt ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"	# lst:		List contents fo
 alias map='xargs -n1'									# map:		Apply the given command to all given items
 alias path='echo -e ${PATH//:/\\n}'						# path: 	List the current paths in the environment
 alias sudo='sudo '
+
+# NOTE: Prefix the `cat` command with a "\" or quotes to override this alias
+if [ -e "$DOTFILES_BIN_PATH/bat" ]; then
+    alias cat='bat'
+fi
 
 # Define CLI-related bindings
 bind '"\e\e": "sudo !!"'

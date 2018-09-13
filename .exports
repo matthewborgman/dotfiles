@@ -37,3 +37,6 @@ if [ "$PLATFORM" == 'mac' ]; then
 elif [ "$PLATFORM" == 'linux-win' ]; then
     export PS1='\[\e[0;33m\]\w\[\e[m\]\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[m\] \$ '
 fi
+
+## Configure third-party scripts in the bin/ directory
+export BAT_THEME="Monokai Extended Light"

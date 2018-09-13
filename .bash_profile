@@ -62,6 +62,15 @@ done
 # Create symlink to iCloud Drive from home directory
 if [ ! -L "$HOME/iCloud Drive" ]; then
     cd $HOME && ln -s $HOME/Library/Mobile\ Documents/com~apple~CloudDocs "iCloud Drive" && cd -
+
+# Include fd integration
+if [ -e "$DOTFILES_PATH/integrations/fd-completion.bash" ]; then
+    source "$DOTFILES_PATH/integrations/fd-completion.bash"
+fi
+
+# Include fzf integration
+if [ -e "$DOTFILES_PATH/integrations/fzf-completion.bash" ]; then
+    source "$DOTFILES_PATH/integrations/fzf-completion.bash"
 fi
 
 # Include Git completion
@@ -96,3 +105,6 @@ TLDR_PATH="$DOTFILES_BIN_PATH/tldr"
 if [ -e "$DOTFILES_PATH/integrations/tldr-integration.bash" ] && [ ! -x "$TLDR_PATH" ]; then
     cp "$DOTFILES_PATH/integrations/tldr-integration.bash" "$TLDR_PATH" && chmod +x "$TLDR_PATH"
 fi
+
+# Ensure third-party scripts in the bin/ directory are executable
+find $DOTFILES_BIN_PATH -not -name ".gitignore" -print0 | xargs -0 chmod 755

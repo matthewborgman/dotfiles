@@ -32,7 +32,7 @@ if [ -d "$INVISION_PATH" ]; then
                 CUSTOM_ALIAS_LENGTH=${#CUSTOM_ALIAS}
                 CUSTOM_ALIAS_LENGTH=$((CUSTOM_ALIAS_LENGTH+1))
 
-                RESULT=`eval ${BASH_ALIASES[$CUSTOM_ALIAS]} && ni`
+                RESULT=`eval $CUSTOM_ALIAS && ni`
 
                 echo -e "\n"
                 echo "$CUSTOM_ALIAS:"
@@ -54,7 +54,7 @@ if [ -d "$INVISION_PATH" ]; then
         if confirmInvisionVersion 'nla'; then
 
             # TODO: Halt processing if `nua` is cancelled or errors
-            nua
+#           nua
 
             for i in "${INVISION_REPO_ALIASES[@]}"; do
 
@@ -64,22 +64,26 @@ if [ -d "$INVISION_PATH" ]; then
 
                 case "$CUSTOM_ALIAS" in
                     "inv")
-                        eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
-                        nlp ${CUSTOM_ALIAS}
+                        eval $CUSTOM_ALIAS
+                        nlp $CUSTOM_ALIAS
+                        ;;
+                    "inva")
+                        eval $CUSTOM_ALIAS
+                        nlcu
                         ;;
                     "invc")
-                        eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
+                        eval $CUSTOM_ALIAS
                         nl
                         ;;
                     "inve2e")
-                        eval ${BASH_ALIASES[$CUSTOM_ALIAS]}
-    #					npm run install:webDriver
+                        eval $CUSTOM_ALIAS
+#    					npm run install:webDriver
                         ./node_modules/.bin/webdriver-manager update
-                        nlp ${CUSTOM_ALIAS}
+                        nlp $CUSTOM_ALIAS
                         nl invision
                         ;;
                     "invui")
-                        nlc ${CUSTOM_ALIAS}
+                        nlc $CUSTOM_ALIAS
                         ;;
                     *)
                         nlacu $CUSTOM_ALIAS
@@ -118,7 +122,7 @@ if [ -d "$INVISION_PATH" ]; then
         CURRENT_LOGLEVEL=`ngll`
         PROJECT="$*"
 
-        eval ${BASH_ALIASES[$PROJECT]}
+        eval $PROJECT
 
         nsll silent
         nl
@@ -131,7 +135,7 @@ if [ -d "$INVISION_PATH" ]; then
         CURRENT_LOGLEVEL=`ngll`
         PROJECT="$*"
 
-        eval ${BASH_ALIASES[$PROJECT]}
+        eval $PROJECT
 
         nsll silent
         nl
@@ -145,7 +149,7 @@ if [ -d "$INVISION_PATH" ]; then
         CURRENT_LOGLEVEL=`ngll`
         PROJECT="$*"
 
-        eval ${BASH_ALIASES[$PROJECT]}
+        eval $PROJECT
 
         nsll silent
         nl

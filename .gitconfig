@@ -1,0 +1,46 @@
+[color]
+	ui = true
+[core]
+	editor = atom --wait
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[diff]
+	tool = Kaleidoscope
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[filter "hawser"]
+	clean = git hawser clean %f
+	required = true
+	smudge = git hawser smudge %f
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	process = git-lfs filter-process
+	required = true
+	smudge = git-lfs smudge -- %f
+[filter "media"]
+	clean = git media clean %f
+	required = true
+	smudge = git media smudge %f
+[format]
+	pretty = oneline
+[log]
+	abbrevCommit = true
+#	decorate = true
+[merge]
+	tool = Kaleidoscope
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+[mergetool]
+	keepBackup = true
+	prompt = false
+[push]
+	default = current
+	followTags = true
+
+# Include computer-specific configurations
+[includeIf "gitdir:/Users/bormat01/"]
+	path = /Users/bormat01/.dotfiles/.gitconfig-bormat01
+[includeIf "gitdir:/Users/matthewborgman/"]
+	path = /Users/matthewborgman/.dotfiles/.gitconfig-bormat01

@@ -82,7 +82,7 @@ if [ -d "$INVISION_PATH" ]; then
                         nlc ${CUSTOM_ALIAS}
                         ;;
                     *)
-                        nlcu ${CUSTOM_ALIAS}
+                        nlacu $CUSTOM_ALIAS
                         ;;
                 esac
 
@@ -97,6 +97,21 @@ if [ -d "$INVISION_PATH" ]; then
         fi
 
         cd $CURRENT_DIRECTORY || exit
+    }
+
+    nlacu () {
+        CURRENT_LOGLEVEL=`ngll`
+        PROJECT="$*"
+
+        eval $PROJECT
+
+        nsll silent
+        nl
+        nl invision-authentication
+        nl invision-core
+        nl invision-ui
+
+        nsll $CURRENT_LOGLEVEL
     }
 
     nlc () {

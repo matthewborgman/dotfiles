@@ -59,6 +59,11 @@ for option in autocd globstar; do
     shopt -s "$option" 2> /dev/null
 done
 
+# Create symlink to iCloud Drive from home directory
+if [ ! -L "$HOME/iCloud Drive" ]; then
+    cd $HOME && ln -s $HOME/Library/Mobile\ Documents/com~apple~CloudDocs "iCloud Drive" && cd -
+fi
+
 # Include Git completion
 if [ -e "$DOTFILES_PATH/integrations/git-completion.bash" ]; then
     source "$DOTFILES_PATH/integrations/git-completion.bash"

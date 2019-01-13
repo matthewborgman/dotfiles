@@ -64,12 +64,12 @@ if [ ! -L "$HOME/iCloud Drive" ]; then
     cd $HOME && ln -s $HOME/Library/Mobile\ Documents/com~apple~CloudDocs "iCloud Drive" && cd -
 fi
 
-# Include fd integration
+# Include `fd` integration
 if [ -e "$DOTFILES_PATH/integrations/fd-completion.bash" ]; then
     source "$DOTFILES_PATH/integrations/fd-completion.bash"
 fi
 
-# Include fzf integration
+# Include `fzf` integration
 if [ -e "$DOTFILES_PATH/integrations/fzf-completion.bash" ]; then
     source "$DOTFILES_PATH/integrations/fzf-completion.bash"
 fi
@@ -100,7 +100,15 @@ if [ -e "$HOME/.ssh/config" ]; then
     complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 fi
 
-# Include TL;DR integration and completion
+# Enable Terraform completion
+if commandExists terraform; then
+
+    if ! complete -p terraform &> /dev/null; then
+        complete -C /usr/local/bin/terraform terraform
+    fi
+fi
+
+# Include `tldr` integration and completion
 TLDR_PATH="$DOTFILES_BIN_PATH/tldr"
 
 if [ -e "$DOTFILES_PATH/integrations/tldr-integration.bash" ] && [ ! -x "$TLDR_PATH" ]; then

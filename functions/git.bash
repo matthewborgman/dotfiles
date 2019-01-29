@@ -107,6 +107,19 @@ gls () {
     git log --pretty='%an - %s' --after="@{$SINCE}"
 }
 
+# Merge the given branch into the current one
+gm () {
+    BRANCH="$*"
+
+    if [ -z $BRANCH ]; then
+
+        echo '`gm` requires the name of the branch to be merged.'
+    else
+
+        git merge --commit --log --no-ff $BRANCH
+    fi
+}
+
 ## Peform a dry-run of merging the given branch into the current one
 gmdr () {
     BRANCH="$*"

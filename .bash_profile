@@ -13,6 +13,8 @@ export INVISION_VERSION_NPM_CACHE_PATHS=("${INVISION_PATH}/npm-cache" "${INVISIO
 export INVISION_VERSION_NPM_MODULES_PATHS=("${INVISION_PATH}/npm-modules" "${INVISION_BACKPORT_PATH}/npm-modules")
 export INVISION_VERSION_PATHS=($INVISION_PATH $INVISION_BACKPORT_PATH)
 export INVISION_VERSIONS=('invision' 'invision-backport')
+export SELFCARE_PATH="$HOME/projects/selfcare"
+export SELFCARE_REPO_ALIASES=(slf slfc slfui)
 
 export PLATFORM=$(detectPlatform)
 export RELATIVE_COMMIT_REGEX='^[0-9]+$'

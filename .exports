@@ -33,9 +33,9 @@ fi
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 if [ "$PLATFORM" == 'mac' ]; then
-    export PS1='\[\e[0;33m\]\w\[\e[m\]\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[m\] \$ '
+    export PS1='\[\e[0;33m\]\w\[\e[m\]\[\e[0;36m\]$(__git_ps1 " (%s)")$(terraform_prompt)\[\e[m\] \$ '
 elif [ "$PLATFORM" == 'linux-win' ]; then
-    export PS1='\[\e[0;33m\]\w\[\e[m\]\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[m\] \$ '
+    export PS1='\[\e[0;33m\]\w\[\e[m\]\[\e[0;36m\]$(__git_ps1 " (%s)")$(terraform_prompt)\[\e[m\] \$ '
 fi
 
 ## Configure third-party scripts in the bin/ directory

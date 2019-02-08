@@ -110,6 +110,10 @@ if commandExists terraform; then
     fi
 fi
 
+if [ -e "$DOTFILES_PATH/integrations/terraform-prompt.bash" ]; then
+    source "$DOTFILES_PATH/integrations/terraform-prompt.bash"
+fi
+
 # Include `tldr` integration and completion
 TLDR_PATH="$DOTFILES_BIN_PATH/tldr"
 

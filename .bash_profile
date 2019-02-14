@@ -123,3 +123,5 @@ fi
 
 # Ensure third-party scripts in the bin/ directory are executable
 find $DOTFILES_BIN_PATH -path ./man -prune -o -not -name ".gitignore" -print0 | xargs -0 chmod 755
+
+init

@@ -122,4 +122,4 @@ if [ -e "$DOTFILES_PATH/integrations/tldr-integration.bash" ] && [ ! -x "$TLDR_P
 fi
 
 # Ensure third-party scripts in the bin/ directory are executable
-find $DOTFILES_BIN_PATH -not -name ".gitignore" -print0 | xargs -0 chmod 755
+find $DOTFILES_BIN_PATH -path ./man -prune -o -not -name ".gitignore" -print0 | xargs -0 chmod 755

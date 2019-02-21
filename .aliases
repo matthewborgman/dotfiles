@@ -40,6 +40,11 @@ if [ -e "$DOTFILES_BIN_PATH/bat" ]; then
     alias cat='bat'
 fi
 
+# NOTE: Prefix the `hr` command with a "\" or quotes to override this alias
+if [ -e "$DOTFILES_BIN_PATH/hr" ]; then
+    alias hr='hr " " - "#" - " "'
+fi
+
 # Define CLI-related bindings
 bind '"\e\e": "sudo !!"'
 

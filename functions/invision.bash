@@ -16,8 +16,10 @@ if [ -d "$INVISION_PATH" ]; then
     inve2e ()   { cd ${INVISION_VERSION_PATH}/invision-e2e; }               # inve2e:   Change to the Invision E2E directory
     invr ()     { cd ${INVISION_VERSION_PATH}/invision-reporting; }         # invr:     Change to the Invision Reporting directory
     invsec ()   { cd ${INVISION_VERSION_PATH}/invision-security; }          # invsec:   Change to the Invision Security directory
-    invsta ()   { cd ${INVISION_VERSION_PATH}/invision-starter; }           # invsta:   Change to the Invision Starter directory
+    invstc ()   { cd ${INVISION_VERSION_PATH}/invision-static; }            # invstc:   Change to the Invision Static directory
+    invstr ()   { cd ${INVISION_VERSION_PATH}/invision-starter; }           # invstr:   Change to the Invision Starter directory
     invstu ()   { cd ${INVISION_VERSION_PATH}/invision-studio; }            # invstu:   Change to the Invision Studio directory
+    invt ()     { cd ${INVISION_VERSION_PATH}/invision-tools; }             # invt:     Change to the Invision Tools directory
     invui ()    { cd ${INVISION_VERSION_PATH}/invision-ui; }                # invui:    Change to the Invision UI directory
 
     ## Install packages for each of the repos
@@ -162,6 +164,7 @@ if [ -d "$INVISION_PATH" ]; then
         nl invision-documentation
         nl invision-reporting
 #		nl invision-starter
+        nl invision-static
         nl invision-security
         nl invision-studio
 

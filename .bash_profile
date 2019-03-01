@@ -4,11 +4,13 @@ source "$HOME/.dotfiles/functions/bootstrap.bash"
 
 export DOTFILES_BIN_PATH="$HOME/.dotfiles/bin"
 export DOTFILES_PATH="$HOME/.dotfiles"
+export INVISION_APPLICATION_REPO_ALIASES=(invbo invcc invcnf invd invr invstu invsec invui)
 export INVISION_BACKPORT_PATH="$HOME/projects/invision-backport"
+export INVISION_DEPENDENCY_REPO_ALIASES=(inva invc inve2e invstc invt invui)
 export INVISION_GLOBAL_NPM_MODULES_PATH="$HOME/npm-modules"
 export INVISION_PATH="$HOME/projects/invision"
-export INVISION_REPO_ALIASES=(inva invc invui invbo invcc invcnf invd invr invsta invstu invsec inv inve2e)
-export INVISION_STARTER_ALIAS='invsta'
+export INVISION_REPO_ALIASES=("${INVISION_DEPENDENCY_REPO_ALIASES[@]}" "${INVISION_APPLICATION_REPO_ALIASES[@]}" "${INVISION_STARTER_ALIAS}")
+export INVISION_STARTER_ALIAS='invstr'
 export INVISION_VERSION_NPM_CACHE_PATHS=("${INVISION_PATH}/npm-cache" "${INVISION_BACKPORT_PATH}/npm-cache")
 export INVISION_VERSION_NPM_MODULES_PATHS=("${INVISION_PATH}/npm-modules" "${INVISION_BACKPORT_PATH}/npm-modules")
 export INVISION_VERSION_PATHS=($INVISION_PATH $INVISION_BACKPORT_PATH)

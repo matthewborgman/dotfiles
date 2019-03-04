@@ -230,6 +230,34 @@ gsd () {
     fi
 }
 
+## Rename the given stash, based on its name or zero-based index, from the current repo
+gsr () {
+    RENAMED_STASH="${2}"
+    SPECIFIED_STASH="${1}"
+
+    if [ -z $SPECIFIED_STASH ]; then
+
+        echo '`gsr` requires the name (e.g. "stash@{1}") or index (e.g. 1) of the stash to be renamed.'
+
+    elif [ -z $RENAMED_STASH ]; then
+
+        echo '`gsr` requires the new name (e.g. "My WIP") for the stash.'
+
+    else
+
+        if [[ $SPECIFIED_STASH =~ $RELATIVE_COMMIT_REGEX ]]; then
+            FORMATTED_STASH="stash@{$SPECIFIED_STASH}"
+        else
+            FORMATTED_STASH=$SPECIFIED_STASH
+        fi
+
+        STASH_REVISION=$(git rev-parse $FORMATTED_STASH)
+
+        git stash drop $FORMATTED_STASH || exit 1
+        git stash store -m "$RENAMED_STASH" $STASH_REVISION
+    fi
+}
+
 ## Stash any modifications, including untracked files, to the current repo
 gss () {
     git add . && git stash save "$*"

@@ -260,7 +260,14 @@ gsr () {
 
 ## Stash any modifications, including untracked files, to the current repo
 gss () {
-    git add . && git stash save "$*"
+    STASH_NAME="${1}"
+    STASH_PATH=""
+
+    if [ "$#" -gt 1 ]; then
+        STASH_PATH=${2}
+    fi
+
+    git stash push --include-untracked -m "$STASH_NAME" "$STASH_PATH"
 }
 
 ## Delete the given tag, defaulting to the most recent if none specified

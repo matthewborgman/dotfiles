@@ -194,37 +194,7 @@ if [ -d "$INVISION_PATH" ]; then
         fi
     }
 
-    tfpa () {
-        AWS_PROFILE=ascendondev terraform apply plan.tfplan
-    }
 
-    tfpp () {
-        AWS_PROFILE=ascendondev terraform plan \
-            -var environment_id=$(terraform workspace show) \
-            -var-file invision_app_names.tfvars \
-            -var-file invision_app_versions.tfvars \
-            -out plan.tfplan
-    }
 
-    tfpr () {
-        AWS_PROFILE=ascendondev terraform refresh \
-            -var environment_id=$(terraform workspace show) \
-            -var-file invision_app_names.tfvars \
-            -var-file invision_app_versions.tfvars
-    }
-
-    tfpv () {
-        AWS_PROFILE=ascendondev terraform validate \
-            -var environment_id=$(terraform workspace show) \
-            -var-file invision_app_names.tfvars \
-            -var-file invision_app_versions.tfvars
-    }
-
-    tfwsi () {
-        AWS_PROFILE=ascendondev terraform init \
-            -backend-config="profile=ascendondev" \
-            -backend-config="shared_credentials_file=~/.aws/credentials" \
-            -backend-config="bucket=terraform-109628516527" \
-            -backend-config="region=us-east-1"
     }
 fi

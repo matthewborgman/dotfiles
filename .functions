@@ -49,6 +49,19 @@ deduplicatePath () {
     fi
 }
 
+## Determine whether the current directory is in the Invision or SelfCare workspace
+determineProjectWorkspace () {
+    local WORKSPACE=""
+
+    if [[ $PWD/ = $SELFCARE_PATH/* ]]; then
+        WORKSPACE="selfcare"
+    elif [[ $PWD/ = $INVISION_PATH/* ]]; then
+        WORKSPACE="invision"
+    fi
+
+    echo "$WORKSPACE"
+}
+
 ## Extract an archive
 extract () {
 

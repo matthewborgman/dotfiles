@@ -13,6 +13,7 @@ if [ -d "$INVISION_PATH" ]; then
     invcc ()    { cd ${INVISION_VERSION_PATH}/invision-customercare; }      # invcc:    Change to the Invision Customer Care directory
     invcnf ()   { cd ${INVISION_VERSION_PATH}/invision-configuration; }     # invcnf:   Change to the Invision Configuration directory
     invd ()     { cd ${INVISION_VERSION_PATH}/invision-documentation; }     # invd:     Change to the Invision Documentation directory
+    invdkr ()   { cd ${INVISION_VERSION_PATH}/invision-docker; }            # invdkr:   Change to the Invision Docker directory
     inve2e ()   { cd ${INVISION_VERSION_PATH}/invision-e2e; }               # inve2e:   Change to the Invision E2E directory
     invr ()     { cd ${INVISION_VERSION_PATH}/invision-reporting; }         # invr:     Change to the Invision Reporting directory
     invsec ()   { cd ${INVISION_VERSION_PATH}/invision-security; }          # invsec:   Change to the Invision Security directory

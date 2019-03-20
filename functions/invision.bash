@@ -194,7 +194,15 @@ if [ -d "$INVISION_PATH" ]; then
         fi
     }
 
+    ## List distribution tags for given module
+    nvdt () {
+        MODULE="$*"
 
+        if [[ ! "$MODULE" =~ ^invision ]]; then
+            MODULE="invision-$MODULE"
+        fi
 
+        echo "Retrieving distribution tags for '${MODULE}'..."
+        npm view $MODULE dist-tags
     }
 fi

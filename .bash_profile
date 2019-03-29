@@ -63,6 +63,11 @@ for option in autocd globstar; do
     shopt -s "$option" 2> /dev/null
 done
 
+# Create symlink to Git configuration
+if commandExists git -a [ ! -L $HOME/.gitconfig ]; then
+    cd $HOME && ln -s "$DOTFILES_PATH/.gitconfig" "$HOME/.gitconfig" && cd -
+fi
+
 # Create symlink to iCloud Drive from home directory
 if [ ! -L "$HOME/iCloud Drive" ]; then
     cd $HOME && ln -s $HOME/Library/Mobile\ Documents/com~apple~CloudDocs "iCloud Drive" && cd -

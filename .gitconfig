@@ -38,9 +38,15 @@
 [push]
 	default = current
 	followTags = true
+[user]
+	name = Matthew Borgman
 
-# Include computer-specific configurations
+# Include computer- and project-specific configurations
 [includeIf "gitdir:/Users/bormat01/"]
-	path = /Users/bormat01/.dotfiles/.gitconfig-bormat01
+	path = ~/.dotfiles/.gitconfig-bormat01
+
 [includeIf "gitdir:/Users/matthewborgman/"]
-	path = /Users/matthewborgman/.dotfiles/.gitconfig-bormat01
+	path = ~/.dotfiles/.gitconfig-matthewborgman
+
+[includeIf "gitdir:/Users/matthewborgman/Websites/go.puma.com*"]
+	path = ~/.dotfiles/.gitconfig-twentyfoursevenstudios

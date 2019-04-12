@@ -64,7 +64,7 @@ for option in autocd globstar; do
 done
 
 # Create symlink to Git configuration
-if commandExists git -a [ ! -L $HOME/.gitconfig ]; then
+if commandExists git && [ ! -L $HOME/.gitconfig ]; then
     cd $HOME && ln -s "$DOTFILES_PATH/.gitconfig" "$HOME/.gitconfig" && cd -
 fi
 

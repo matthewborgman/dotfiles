@@ -23,6 +23,32 @@ if [ -d "$INVISION_PATH" ]; then
     invt ()     { cd ${INVISION_VERSION_PATH}/invision-tools; }             # invt:     Change to the Invision Tools directory
     invui ()    { cd ${INVISION_VERSION_PATH}/invision-ui; }                # invui:    Change to the Invision UI directory
 
+    ## Add a distribution tag to the given module and version
+    ndta () {
+        local MODULE="$1"
+        local TAG="$3"
+        local VERSION="$2"
+
+        if [[ ! "$MODULE" =~ ^invision ]]; then
+            MODULE="invision-$MODULE"
+        fi
+
+        echo "Adding distribution tag for '${MODULE}'..."
+        npm dist-tag --registry http://artifacts.cddev.tv/npm/ascendon.internal.npm/ add $MODULE
+    }
+
+    ## List distribution tags for given module
+    ndtv () {
+        local MODULE="$*"
+
+        if [[ ! "$MODULE" =~ ^invision ]]; then
+            MODULE="invision-$MODULE"
+        fi
+
+        echo "Retrieving distribution tags for '${MODULE}'..."
+        npm view --registry http://artifacts.cddev.tv/npm/ascendon.internal.npm/ $MODULE dist-tags
+    }
+
     ## Install packages for each of the repos
     nia () {
         CURRENT_DIRECTORY="$PWD"
@@ -192,17 +218,5 @@ if [ -d "$INVISION_PATH" ]; then
         else
             echo 'Aborted `nua` due to incorrect Invision version selected...'
         fi
-    }
-
-    ## List distribution tags for given module
-    nvdt () {
-        MODULE="$*"
-
-        if [[ ! "$MODULE" =~ ^invision ]]; then
-            MODULE="invision-$MODULE"
-        fi
-
-        echo "Retrieving distribution tags for '${MODULE}'..."
-        npm view $MODULE dist-tags
     }
 fi

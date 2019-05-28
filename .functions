@@ -126,6 +126,17 @@ psgrep () {
     ps auwx | grep -i "$*"
 }
 
+## Remove the given directory
+rmd () {
+    local DIRECTORY="$*"
+
+    if [ -z $DIRECTORY ]; then
+        echo '`rmd` requires the name of the directory to be deleted.'
+    else
+        rm -fR $DIRECTORY
+    fi
+}
+
 ## Display hierarchy for the current directory
 trees () {
 

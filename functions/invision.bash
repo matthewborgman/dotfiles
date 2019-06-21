@@ -39,14 +39,25 @@ if [ -d "$INVISION_PATH" ]; then
 
     ## List distribution tags for given module
     ndtv () {
-        local MODULE="$*"
+        local DEFAULT_MODULES="authentication core e2e ui"
+        local MODULES="$*"
 
-        if [[ ! "$MODULE" =~ ^invision ]]; then
-            MODULE="invision-$MODULE"
+        if [ -z $MODULES ]; then
+            MODULES=$DEFAULT_MODULES
         fi
 
-        echo "Retrieving distribution tags for '${MODULE}'..."
-        npm view --registry http://artifacts.cddev.tv/npm/ascendon.internal.npm/ $MODULE dist-tags
+        read -r -a STANDARDIZED_MODULES <<< "$MODULES"
+
+        for i in "${STANDARDIZED_MODULES[@]}"; do
+            local FORMATTED_MODULE=${i}
+
+            if [[ ! "$FORMATTED_MODULE" =~ ^invision ]]; then
+                FORMATTED_MODULE="invision-${FORMATTED_MODULE}"
+            fi
+
+            echo "Retrieving distribution tags for '${FORMATTED_MODULE}'..."
+            npm view --registry http://artifacts.cddev.tv/npm/ascendon.internal.npm/ $FORMATTED_MODULE dist-tags
+        done
     }
 
     ## Install packages for each of the repos

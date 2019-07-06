@@ -26,5 +26,6 @@ if commandExists docker-compose; then
 #	alias dcu='docker-compose up --build --force-recreate -d'	# dcu:	Create and start containers
 	alias dcu='docker-compose up -d'							# dcu:	Create and start containers
 	alias dcp='docker-compose pause'							# dcp:	Pause containers
+	alias dcps='docker-compose ps'							    # dcps:	List container statuses
 	alias dcup='docker-compose unpause'							# dcup:	Unpause containers
 fi

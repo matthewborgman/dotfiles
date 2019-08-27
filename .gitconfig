@@ -1,7 +1,7 @@
 [color]
 	ui = true
 [core]
-	editor = atom --wait
+	editor = code --wait
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [diff]
 	tool = Kaleidoscope

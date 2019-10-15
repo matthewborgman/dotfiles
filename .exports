@@ -18,9 +18,9 @@ export LESS_TERMCAP_us=$'\e'"[1;32m"
 export MANPAGER='less -X'
 
 # Configure default AWS profile
-if [ -d "$INVISION_PATH" ]; then
-    export AWS_DEFAULT_PROFILE=ascendondev
-fi
+# if [ -d "$INVISION_PATH" ]; then
+#     export AWS_PROFILE="${AWS_DEFAULT_PROFILE}"
+# fi
 
 # Configure `nvm`
 if [ "$PLATFORM" == 'mac' ]; then

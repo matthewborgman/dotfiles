@@ -9,6 +9,7 @@ export INVISION_BACKPORT_PATH="$HOME/projects/invision-backport"
 export INVISION_DEPENDENCY_REPO_ALIASES=(inva invc inve2e invstc invt invui)
 export INVISION_GLOBAL_NPM_MODULES_PATH="$HOME/npm-modules"
 export INVISION_PATH="$HOME/projects/invision"
+export INVISION_REACT_PATH="$HOME/projects/invision-react"
 export INVISION_REPO_ALIASES=("${INVISION_DEPENDENCY_REPO_ALIASES[@]}" "${INVISION_APPLICATION_REPO_ALIASES[@]}" "${INVISION_STARTER_ALIAS}")
 export INVISION_STARTER_ALIAS='invstr'
 export INVISION_VERSION_NPM_CACHE_PATHS=("${INVISION_PATH}/npm-cache" "${INVISION_BACKPORT_PATH}/npm-cache")

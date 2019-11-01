@@ -2,6 +2,7 @@
 	ui = true
 [core]
 	editor = code --wait
+    excludesfile = ~/.dotfiles/.gitignore
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [diff]
 	tool = Kaleidoscope

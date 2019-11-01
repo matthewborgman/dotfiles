@@ -9,9 +9,13 @@ _notes
 *.patch
 *.swp
 *.vi
+._*
 .cache
+.history
 .project
 .settings
 .tags
 .DS_Store
+.Spotlight-V100
+.Trashes
 Thumbs.db

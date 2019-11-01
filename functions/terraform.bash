@@ -30,6 +30,7 @@ if [ -d "$INVISION_PATH" -o -d "$SELFCARE_PATH" ]; then
         local WORKSPACE_VERSIONS_FILE="${WORKSPACE}_app_versions.tfvars"
 
         AWS_PROFILE=ascendondev terraform plan \
+            -refresh=true \
             -var="environment_id=$(terraform workspace show)" \
             -var-file="$WORKSPACE_NAMES_FILE" \
             -var-file="$WORKSPACE_VERSIONS_FILE" \

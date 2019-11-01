@@ -4,6 +4,22 @@
 
 if [ -d "$INVISION_PATH" -o -d "$SELFCARE_PATH" ]; then
 
+    tfd () {
+        local WORKSPACE="$(determineProjectWorkspace)"
+        local WORKSPACE_NAMES_FILE="${WORKSPACE}_app_names.tfvars"
+        local WORKSPACE_VERSIONS_FILE="${WORKSPACE}_app_versions.tfvars"
+
+        AWS_PROFILE=ascendondev terraform destroy \
+            -refresh=true \
+            -var="environment_id=$(terraform workspace show)" \
+            -var-file="$WORKSPACE_NAMES_FILE" \
+            -var-file="$WORKSPACE_VERSIONS_FILE"
+    }
+
+    tfi () {
+        AWS_PROFILE=ascendondev terraform import $*
+    }
+
     tfpa () {
         AWS_PROFILE=ascendondev terraform apply plan.tfplan
     }

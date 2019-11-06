@@ -6,7 +6,6 @@ source "${DOTFILES_PATH}/functions/bootstrap.bash"
 
 if [ -d "$INVISION_PATH" ]; then
 
-    inv ()      { cd ${INVISION_VERSION_PATH}/invision; }                   # inv:      Change to the Invision directory
     inva ()     { cd ${INVISION_VERSION_PATH}/invision-authentication; }    # inva:     Change to the Invision Authentication directory
     invbo ()    { cd ${INVISION_VERSION_PATH}/invision-billingoperations; } # invbo:    Change to the Invision Billing Operations directory
     invc ()     { cd ${INVISION_VERSION_PATH}/invision-core; }              # invc:     Change to the Invision Core directory
@@ -22,6 +21,8 @@ if [ -d "$INVISION_PATH" ]; then
     invstu ()   { cd ${INVISION_VERSION_PATH}/invision-studio; }            # invstu:   Change to the Invision Studio directory
     invt ()     { cd ${INVISION_VERSION_PATH}/invision-tools; }             # invt:     Change to the Invision Tools directory
     invui ()    { cd ${INVISION_VERSION_PATH}/invision-ui; }                # invui:    Change to the Invision UI directory
+
+    invrct ()   { cd ${INVISION_REACT_PATH}/invision; }                     # invrct:   Change to the Invision React directory
 
     ## Add a distribution tag to the given module and version
     ndta () {

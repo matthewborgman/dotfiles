@@ -35,7 +35,7 @@ if [ -d "$INVISION_PATH" ]; then
         fi
 
         echo "Adding distribution tag for '${MODULE}'..."
-        npm dist-tag --registry http://artifacts.cddev.tv/npm/ascendon.internal.npm/ add $MODULE
+        npm dist-tag --registry http://artifacts.csgideev.com/npm/ascendon.internal.npm/ add $MODULE
     }
 
     ## List distribution tags for given module
@@ -57,7 +57,7 @@ if [ -d "$INVISION_PATH" ]; then
             fi
 
             echo "Retrieving distribution tags for '${FORMATTED_MODULE}'..."
-            npm view --registry http://artifacts.cddev.tv/npm/ascendon.internal.npm/ $FORMATTED_MODULE dist-tags
+            npm view --registry http://artifacts.csgideev.com/npm/ascendon.internal.npm/ $FORMATTED_MODULE dist-tags
         done
     }
 

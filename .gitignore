@@ -1,4 +1,5 @@
 .extra
+.oh-my-zsh/
 node_modules/
 
 # Ignore OS- and Application-Generated Files

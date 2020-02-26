@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # NOTE: Adopted from https://github.com/amatellanes/terraform-workspace-prompt
 function terraform_prompt () {

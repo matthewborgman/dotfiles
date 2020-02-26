@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-source "${DOTFILES_PATH}/functions/bootstrap.bash"
+source "${DOTFILES_PATH}/functions/bootstrap.sh"
 
 # Define common custom CLI-related functions
 
@@ -130,10 +130,10 @@ psgrep () {
 rmd () {
     local DIRECTORY="$*"
 
-    if [ -z $DIRECTORY ]; then
+    if [ -z "$DIRECTORY" ]; then
         echo '`rmd` requires the name of the directory to be deleted.'
     else
-        rm -fR $DIRECTORY
+        rm -fR "$DIRECTORY"
     fi
 }
 
@@ -151,7 +151,7 @@ trees () {
 for file in $DOTFILES_PATH/functions/*; do
     FILENAME=$(basename "$file")
 
-    [ $FILENAME != "bootstrap.bash" ] && [ -r "$file" ] && [ -f "$file" ] && source "$file"
+    [ $FILENAME != "bootstrap.sh" ] && [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 
 unset file

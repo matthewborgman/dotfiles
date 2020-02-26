@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 set +vx -o pipefail
 [[ $- = *i* ]] && echo "Don't source this script!" && return 1
 version='0.39'

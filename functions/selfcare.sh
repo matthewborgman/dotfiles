@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Define functions for use with SelfCare
 
-source "${DOTFILES_PATH}/functions/bootstrap.bash"
+source "${DOTFILES_PATH}/functions/bootstrap.sh"
 
 if [ -d "$SELFCARE_PATH" ]; then
 

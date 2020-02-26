@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Define custom Git-related functions
 
-source "${DOTFILES_PATH}/functions/bootstrap.bash"
+source "${DOTFILES_PATH}/functions/bootstrap.sh"
 
 ## Archive the current branch or tag for the current repo
 ## NOTE: Adopted from https://github.com/tj/git-extras/blob/master/bin/git-archive-file

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Configure autocompletion to be:
 # - case-insensitive,

@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Define custom NPM-related aliases
 
-source "${DOTFILES_PATH}/functions/bootstrap.bash"
+source "${DOTFILES_PATH}/functions/bootstrap.sh"
 
 if commandExists npm; then
 

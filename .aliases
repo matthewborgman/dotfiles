@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Detect which `ls` flavor is in use: GNU `ls` or macOS `ls`
 if ls --color > /dev/null 2>&1; then
@@ -23,11 +23,11 @@ alias ~='cd ~'											# ~:		Change to the "home" directory
 alias cdp='cd -'										# cdp:		Change to the previous directory
 alias df='df -h'										# df:		Display disk usage in a human-readable format by default
 alias dotfiles="cd ${DOTFILES_PATH}"					# dotfiles:	Change to the ".dotfiles" directory
-alias ebp="atom ${DOTFILES_PATH}/.bash_profile"			# ebp:		Edit Bash profile
+alias ezcfg="code ${DOTFILES_PATH}/.zshrc"			    # ezcfg:	Edit ZSH configuration
 alias findh='find . -name '								# findh:	List matching files in the current directory and its subdirectories
 alias grep='grep -n --color=auto'						# grep:		List matches for a pattern colorized and with line numbers by default
 alias h='history'
-alias lbp=". ${DOTFILES_PATH}/.bash_profile"			# lbp:		Load the Bash profile
+alias lzcfg=". ${DOTFILES_PATH}/.zshrc"			        # lzcfg:	Load the ZSH configuration
 alias ls="ls -ahl ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"	# lst:		List contents for the directory colorized and omitting predetermined files by default
 alias lst="ls -ahlt ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"	# lst:		List contents for the directory sorted by date modified
 alias map='xargs -n1'									# map:		Apply the given command to all given items
@@ -45,7 +45,7 @@ if [ -e "$DOTFILES_BIN_PATH/hr" ]; then
 fi
 
 # Define CLI-related bindings
-bind '"\e\e": "sudo !!"'
+bindkey -s '\e\e' 'sudo !!'
 
 # Define Git-, Invision-, and NPM-related aliases
 for file in $DOTFILES_PATH/aliases/*; do

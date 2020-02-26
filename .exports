@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Configure `history` to omit duplicates and display a timestamp for each entry
 export HISTCONTROL='ignoreboth'
@@ -23,20 +23,14 @@ export MANPAGER='less -X'
 # fi
 
 # Configure `nvm`
-if [ "$PLATFORM" == 'mac' ]; then
-    export NVM_DIR="$HOME/.nvm"
-elif [ "$PLATFORM" == 'linux-win' ]; then
-    export NVM_DIR="$HOME/nvm"
-fi
+export NVM_DIR="$HOME/.nvm"
 
 # Configure new shells to use history from all previous shells and not just the "last window closed" and use a custom prompt
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-if [ "$PLATFORM" == 'mac' ]; then
-    export PS1='\[\e[0;33m\]\w\[\e[m\]\[\e[0;36m\]$(__git_ps1 " (%s)")$(terraform_prompt)\[\e[m\] \$ '
-elif [ "$PLATFORM" == 'linux-win' ]; then
-    export PS1='\[\e[0;33m\]\w\[\e[m\]\[\e[0;36m\]$(__git_ps1 " (%s)")$(terraform_prompt)\[\e[m\] \$ '
-fi
+setopt PROMPT_SUBST ;
+# export PS1='\[\e[0;33m\]\w\[\e[m\]\[\e[0;36m\]$(__git_ps1 " (%s)")$(terraform_prompt)\[\e[m\] \$ '
+export PS1=' %F{#81a2be}%~%f%F{#8abeb7}$(__git_ps1 " (%s)")%f%F{#f0c674}$(terraform_prompt)%f ❯ '
 
 ## Configure third-party scripts in the bin/ directory
 export BAT_THEME="Monokai Extended Light"

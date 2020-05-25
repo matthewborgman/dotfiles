@@ -14,6 +14,7 @@ if commandExists git; then
     alias gcf='git clean -df'																													# gcf:	Clean the current repo of untracked directories and files
     alias gcp='git checkout -'																													# gcp:	Checkout the previous branch
     alias gd='git diff'																															# gd:	Display a diff for the current branch
+    alias gf='git fetch'																														# gf:	Fetch from the origin
     alias gl='git log'																															# gl:	Display a log of commits to the current branch
     alias glg='gl --decorate --oneline --graph --date-order --all'																				# glg:	Display a log of commits to the current branch as a graph
     alias gmd="git merge --commit --log --no-ff ${DEVELOPMENT_BRANCH_NAME}"																		# gmd:	Merge the "development" branch into the current branch

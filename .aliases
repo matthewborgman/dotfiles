@@ -32,6 +32,8 @@ alias ls="ls -ahl ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"	# lst:		List contents for 
 alias lst="ls -ahlt ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"	# lst:		List contents for the directory sorted by date modified
 alias map='xargs -n1'									# map:		Apply the given command to all given items
 alias path='echo -e ${PATH//:/\\n}'						# path: 	List the current paths in the environment
+alias pip=/usr/bin/pip3
+alias python=/usr/bin/python3
 alias sudo='sudo '
 
 # NOTE: Prefix the `cat` command with a "\" or quotes to override this alias

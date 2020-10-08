@@ -22,7 +22,7 @@
 
 ## Determine whether a command exists for the current platform
 commandExists () {
-    type "$1" &> /dev/null
+    which "$1" &> /dev/null;
 }
 
 ## Confirm that a command should be peformed on the current Invision version (e.g. "invision-backport")

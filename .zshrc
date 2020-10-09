@@ -118,6 +118,11 @@ if [ -e "$NVM_DIR" ]; then
     [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 fi
 
+# Create symlink to Okta-AWSCLI (https://github.com/jmhale/okta-awscli) configuration
+if commandExists okta-awscli && [ ! -L "$HOME/.okta-aws" ]; then
+    cd $HOME && ln -s "$DOTFILES_PATH/.okta-aws" "$HOME/.okta-aws" && cd -
+fi
+
 # Enable tab completion for SSH hostnames, while ignoring wildcards
 if [ -e "$HOME/.ssh/config" ]; then
     complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh

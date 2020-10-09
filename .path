@@ -1,9 +1,5 @@
-case ":$PATH:" in
-  *":$DOTFILES_BIN_PATH:"*) :;;
-  *) PATH="$DOTFILES_BIN_PATH:$PATH";;
-esac
+# Ensure $PATH items are unique, then append items
+typeset -U path
 
-case ":$PATH:" in
-  *":$INVISION_GLOBAL_NPM_MODULES_PATH:"*) :;;
-  *) PATH="$INVISION_GLOBAL_NPM_MODULES_PATH:$PATH";;
-esac
+path+=("$DOTFILES_BIN_PATH")
+path+=("$INVISION_GLOBAL_NPM_MODULES_PATH")

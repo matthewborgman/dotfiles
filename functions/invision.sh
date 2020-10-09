@@ -6,23 +6,23 @@ source "${DOTFILES_PATH}/functions/bootstrap.sh"
 
 if [ -d "$INVISION_PATH" ]; then
 
-    inva ()     { cd ${INVISION_VERSION_PATH}/invision-authentication; }    # inva:     Change to the Invision Authentication directory
-    invbo ()    { cd ${INVISION_VERSION_PATH}/invision-billingoperations; } # invbo:    Change to the Invision Billing Operations directory
-    invc ()     { cd ${INVISION_VERSION_PATH}/invision-core; }              # invc:     Change to the Invision Core directory
-    invcc ()    { cd ${INVISION_VERSION_PATH}/invision-customercare; }      # invcc:    Change to the Invision Customer Care directory
-    invcnf ()   { cd ${INVISION_VERSION_PATH}/invision-configuration; }     # invcnf:   Change to the Invision Configuration directory
-    invd ()     { cd ${INVISION_VERSION_PATH}/invision-documentation; }     # invd:     Change to the Invision Documentation directory
-    invdkr ()   { cd ${INVISION_VERSION_PATH}/invision-docker; }            # invdkr:   Change to the Invision Docker directory
-    inve2e ()   { cd ${INVISION_VERSION_PATH}/invision-e2e; }               # inve2e:   Change to the Invision E2E directory
-    invr ()     { cd ${INVISION_VERSION_PATH}/invision-reporting; }         # invr:     Change to the Invision Reporting directory
-    invsec ()   { cd ${INVISION_VERSION_PATH}/invision-security; }          # invsec:   Change to the Invision Security directory
-    invstc ()   { cd ${INVISION_VERSION_PATH}/invision-static; }            # invstc:   Change to the Invision Static directory
-    invstr ()   { cd ${INVISION_VERSION_PATH}/invision-starter; }           # invstr:   Change to the Invision Starter directory
-    invstu ()   { cd ${INVISION_VERSION_PATH}/invision-studio; }            # invstu:   Change to the Invision Studio directory
-    invt ()     { cd ${INVISION_VERSION_PATH}/invision-tools; }             # invt:     Change to the Invision Tools directory
-    invui ()    { cd ${INVISION_VERSION_PATH}/invision-ui; }                # invui:    Change to the Invision UI directory
+    inva ()     { cd ${INVISION_VERSION_PATH}/Authentication; }    # inva:     Change to the Invision Authentication directory
+    invbo ()    { cd ${INVISION_VERSION_PATH}/Billing; }           # invbo:    Change to the Invision Billing Operations directory
+    invc ()     { cd ${INVISION_VERSION_PATH}/Core; }              # invc:     Change to the Invision Core directory
+    invcc ()    { cd ${INVISION_VERSION_PATH}/CustomerCare; }      # invcc:    Change to the Invision Customer Care directory
+    invcnf ()   { cd ${INVISION_VERSION_PATH}/Configuration; }     # invcnf:   Change to the Invision Configuration directory
+    invd ()     { cd ${INVISION_VERSION_PATH}/Documentation; }     # invd:     Change to the Invision Documentation directory
+    invdkr ()   { cd ${INVISION_VERSION_PATH}/docker; }            # invdkr:   Change to the Invision Docker directory
+    inve2e ()   { cd ${INVISION_VERSION_PATH}/E2E; }               # inve2e:   Change to the Invision E2E directory
+    invr ()     { cd ${INVISION_VERSION_PATH}/Reporting; }         # invr:     Change to the Invision Reporting directory
+    invsec ()   { cd ${INVISION_VERSION_PATH}/Security; }          # invsec:   Change to the Invision Security directory
+    invstc ()   { cd ${INVISION_VERSION_PATH}/Static; }            # invstc:   Change to the Invision Static directory
+    invstr ()   { cd ${INVISION_VERSION_PATH}/Starter; }           # invstr:   Change to the Invision Starter directory
+    invstu ()   { cd ${INVISION_VERSION_PATH}/Studio; }            # invstu:   Change to the Invision Studio directory
+    invt ()     { cd ${INVISION_VERSION_PATH}/Tools; }             # invt:     Change to the Invision Tools directory
+    invui ()    { cd ${INVISION_VERSION_PATH}/UI; }                # invui:    Change to the Invision UI directory
 
-    invrct ()   { cd ${INVISION_REACT_PATH}/invision; }                     # invrct:   Change to the Invision React directory
+    invrct ()   { cd ${INVISION_REACT_PATH}/invision; }            # invrct:   Change to the Invision React directory
 
     ## Add a distribution tag to the given module and version
     ndta () {
@@ -35,19 +35,19 @@ if [ -d "$INVISION_PATH" ]; then
         fi
 
         echo "Adding distribution tag for '${MODULE}'..."
-        npm dist-tag --registry http://artifacts.csgidev.com/npm/ascendon.internal.npm/ add "${MODULE}@${VERSION}" $TAG
+        npm dist-tag --registry https://pkgs.dev.azure.com/Ascendon/Invision/_packaging/invision/npm/registry/ add "${MODULE}@${VERSION}" $TAG
     }
 
     ## List distribution tags for given module
     ndtv () {
-        local DEFAULT_MODULES="authentication core e2e ui"
+        local DEFAULT_MODULES="Authentication Core E2E UI"
         local MODULES="$*"
 
         if [ -z $MODULES ]; then
             MODULES=$DEFAULT_MODULES
         fi
 
-        read -r -a STANDARDIZED_MODULES <<< "$MODULES"
+        read -r -A STANDARDIZED_MODULES <<< "$MODULES"
 
         for i in "${STANDARDIZED_MODULES[@]}"; do
             local FORMATTED_MODULE=${i}
@@ -57,7 +57,7 @@ if [ -d "$INVISION_PATH" ]; then
             fi
 
             echo "Retrieving distribution tags for '${FORMATTED_MODULE}'..."
-            npm view --registry http://artifacts.csgidev.com/npm/ascendon.internal.npm/ $FORMATTED_MODULE dist-tags
+            npm view --registry https://pkgs.dev.azure.com/Ascendon/Invision/_packaging/invision/npm/registry/ $FORMATTED_MODULE dist-tags
         done
     }
 
@@ -152,9 +152,9 @@ if [ -d "$INVISION_PATH" ]; then
 
         nsll silent
         nl
-        nl invision-authentication
-        nl invision-core
-        nl invision-ui
+        nl Authentication
+        nl Core
+        nl UI
 
         nsll $CURRENT_LOGLEVEL
     }
@@ -167,7 +167,7 @@ if [ -d "$INVISION_PATH" ]; then
 
         nsll silent
         nl
-        nl invision-core
+        nl Core
 
         nsll $CURRENT_LOGLEVEL
     }
@@ -180,8 +180,8 @@ if [ -d "$INVISION_PATH" ]; then
 
         nsll silent
         nl
-        nl invision-core
-        nl invision-ui
+        nl Core
+        nl UI
 
         nsll $CURRENT_LOGLEVEL
     }
@@ -194,18 +194,18 @@ if [ -d "$INVISION_PATH" ]; then
 
         nsll silent
         nl
-        nl invision-core
-        nl invision-ui
-        nl invision-authentication
-        nl invision-billingoperations
-        nl invision-customercare
-        nl invision-configuration
-        nl invision-documentation
-        nl invision-reporting
-#		nl invision-starter
-        nl invision-static
-        nl invision-security
-        nl invision-studio
+        nl Core
+        nl UI
+        nl Authentication
+        nl Billing
+        nl CustomerCare
+        nl Configuration
+        nl Documentation
+        nl Reporting
+#		nl Starter
+        nl Static
+        nl Security
+        nl Studio
 
         nsll $CURRENT_LOGLEVEL
     }

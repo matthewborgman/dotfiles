@@ -1,5 +1,3 @@
-# See https://github.com/jmhale/okta-awscli for reference
-
 [dashboard]
 app-link = https://ascendon.okta.com/home/amazon_aws/0oa1ib3txpq5H87ac357/272
 base-url = ascendon.okta.com

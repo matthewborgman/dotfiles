@@ -150,10 +150,11 @@ fi
 # Ensure third-party scripts in the bin/ directory are executable
 find $DOTFILES_BIN_PATH -path ./man -prune -o -not -name ".gitignore" -print0 | xargs -0 chmod 755
 
-# Add Go and Yarn to $PATH
-export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
+# Add Python and Yarn to $PATH
+if commandExists /usr/bin/python3; then
+    export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
+fi
 
-export PATH="$PATH:/usr/local/go/bin:$HOME/go"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH=$PY_USER_BIN:$PATH
 

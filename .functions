@@ -71,7 +71,7 @@ fs () {
 
 ## Search history
 hgrep () {
-    history | grep -i "$*"
+    hs "$*"
 }
 
 ## Search the current directory

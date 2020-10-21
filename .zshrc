@@ -29,6 +29,7 @@ ZSH_THEME=""
 
 plugins=(
     aws
+    history
 )
 
 source $ZSH/oh-my-zsh.sh

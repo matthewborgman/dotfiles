@@ -26,7 +26,6 @@ alias dotfiles="cd ${DOTFILES_PATH}"					# dotfiles:	Change to the ".dotfiles" d
 alias ezcfg="code ${DOTFILES_PATH}/.zshrc"			    # ezcfg:	Edit ZSH configuration
 alias findh='find . -name '								# findh:	List matching files in the current directory and its subdirectories
 alias grep='grep -n --color=auto'						# grep:		List matches for a pattern colorized and with line numbers by default
-alias h='history'
 alias lzcfg=". ${DOTFILES_PATH}/.zshrc"			        # lzcfg:	Load the ZSH configuration
 alias ls="ls -ahl ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"	# lst:		List contents for the directory colorized and omitting predetermined files by default
 alias lst="ls -ahlt ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"	# lst:		List contents for the directory sorted by date modified

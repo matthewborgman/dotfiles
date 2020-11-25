@@ -12,9 +12,17 @@ awsauth() {
         okta-awscli --okta-profile "$1" --profile "$1"
 
         wait
-        export AWS_PROFILE="$1"
-        echo "\n Successfully authenticated using profile \"$1\". Current identity:\n"
-        aws --profile "$1" sts get-caller-identity | bat --language json
-        echo "\n"
+
+        if [[ $? == 0 ]]; then
+
+            local RESULT=$(aws --profile "$1" sts get-caller-identity)
+
+            export AWS_ACCOUNT_ID=$(echo $RESULT | jq -r ".Account")
+            export AWS_PROFILE="$1"
+
+            echo "\n Successfully authenticated using profile \"$1\". Current identity:\n"
+            echo $RESULT | bat --language json
+            echo "\n"
+        fi
     fi
 }

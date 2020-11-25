@@ -261,7 +261,7 @@ gsr () {
 ## Stash any modifications, including untracked files, to the current repo
 gss () {
     STASH_NAME="${1}"
-    STASH_PATH=""
+    STASH_PATH="."
 
     if [ "$#" -gt 1 ]; then
         STASH_PATH=${2}

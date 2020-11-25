@@ -2,68 +2,63 @@
 
 # Define custom Terraform-related functions
 
-if [ -d "$INVISION_PATH" -o -d "$SELFCARE_PATH" ]; then
+if [ -d "$INVISION_PATH" ]; then
 
     tfd () {
-        local WORKSPACE="$(determineProjectWorkspace)"
-        local WORKSPACE_NAMES_FILE="${WORKSPACE}_app_names.tfvars"
-        local WORKSPACE_VERSIONS_FILE="${WORKSPACE}_app_versions.tfvars"
+        local NAMES_FILE="invision_app_names.tfvars"
+        local VERSIONS_FILE="invision_app_versions.tfvars"
 
-        AWS_PROFILE=ascendondev terraform destroy \
+        terraform destroy \
             -refresh=true \
             -var="environment_id=$(terraform workspace show)" \
-            -var-file="$WORKSPACE_NAMES_FILE" \
-            -var-file="$WORKSPACE_VERSIONS_FILE"
+            -var-file="$NAMES_FILE" \
+            -var-file="$VERSIONS_FILE"
     }
 
     tfi () {
-        AWS_PROFILE=ascendondev terraform import $*
+        terraform import $*
     }
 
     tfpa () {
-        AWS_PROFILE=ascendondev terraform apply plan.tfplan
+        terraform apply plan.tfplan
     }
 
     tfpp () {
-        local WORKSPACE=$(determineProjectWorkspace)
-        local WORKSPACE_NAMES_FILE="${WORKSPACE}_app_names.tfvars"
-        local WORKSPACE_VERSIONS_FILE="${WORKSPACE}_app_versions.tfvars"
+        local NAMES_FILE="invision_app_names.tfvars"
+        local VERSIONS_FILE="invision_app_versions.tfvars"
 
-        AWS_PROFILE=ascendondev terraform plan \
-            -refresh=true \
+        terraform plan \
             -var="environment_id=$(terraform workspace show)" \
-            -var-file="$WORKSPACE_NAMES_FILE" \
-            -var-file="$WORKSPACE_VERSIONS_FILE" \
+            -var-file="$NAMES_FILE" \
+            -var-file="$VERSIONS_FILE" \
             -out plan.tfplan
     }
 
     tfpr () {
-        local WORKSPACE="$(determineProjectWorkspace)"
-        local WORKSPACE_NAMES_FILE="${WORKSPACE}_app_names.tfvars"
-        local WORKSPACE_VERSIONS_FILE="${WORKSPACE}_app_versions.tfvars"
+        local NAMES_FILE="invision_app_names.tfvars"
+        local VERSIONS_FILE="invision_app_versions.tfvars"
 
-        AWS_PROFILE=ascendondev terraform refresh \
+        terraform refresh \
             -var="environment_id=$(terraform workspace show)" \
-            -var-file="$WORKSPACE_NAMES_FILE" \
-            -var-file="$WORKSPACE_VERSIONS_FILE"
+            -var-file="$NAMES_FILE" \
+            -var-file="$VERSIONS_FILE"
     }
 
     tfpv () {
-        local WORKSPACE="$(determineProjectWorkspace)"
-        local WORKSPACE_NAMES_FILE="${WORKSPACE}_app_names.tfvars"
-        local WORKSPACE_VERSIONS_FILE="${WORKSPACE}_app_versions.tfvars"
+        local NAMES_FILE="invision_app_names.tfvars"
+        local VERSIONS_FILE="invision_app_versions.tfvars"
 
-        AWS_PROFILE=ascendondev terraform validate \
+        terraform validate \
             -var="environment_id=$(terraform workspace show)" \
-            -var-file="$WORKSPACE_NAMES_FILE" \
-            -var-file="$WORKSPACE_VERSIONS_FILE"
+            -var-file="$NAMES_FILE" \
+            -var-file="$VERSIONS_FILE"
     }
 
     tfwsi () {
-        AWS_PROFILE=ascendondev terraform init \
-            -backend-config="profile=ascendondev" \
+        terraform init \
+            -backend-config="profile=${AWS_PROFILE}" \
             -backend-config="shared_credentials_file=~/.aws/credentials" \
-            -backend-config="bucket=terraform-109628516527" \
+            -backend-config="bucket=terraform-${AWS_ACCOUNT_ID}" \
             -backend-config="region=us-east-1"
     }
 fi

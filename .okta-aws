@@ -6,6 +6,14 @@ factor = OKTA
 username = matthew.borgman@csgi.com
 role = arn:aws:iam::532325500999:role/AscRol-Ops-Okta-PowerUser
 
+[internaltest]
+app-link = https://ascendon.okta.com/home/amazon_aws/0oae84rjgihdFn3r0356/272
+base-url = ascendon.okta.com
+duration = 3600
+factor = OKTA
+username = matthew.borgman@csgi.com
+role = arn:aws:iam::384126748274:role/AscRol-Ops-Okta-ReadOnlyUser
+
 [invision]
 app-link = https://ascendon.okta.com/home/amazon_aws/0oa2hibbgzhXmooAt357/272
 base-url = ascendon.okta.com

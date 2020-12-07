@@ -4,15 +4,18 @@
 
 if [ -d "$INVISION_PATH" ]; then
 
-    tfd () {
-        local NAMES_FILE="invision_app_names.tfvars"
-        local VERSIONS_FILE="invision_app_versions.tfvars"
+    generateInvEnvTfVars() {
+        echo "environment_id = \"$(terraform workspace show)\"" > invision_environment.tfvars
+    }
 
-        terraform destroy \
-            -refresh=true \
-            -var="environment_id=$(terraform workspace show)" \
-            -var-file="$NAMES_FILE" \
-            -var-file="$VERSIONS_FILE"
+    removeInvEnvTfVars() {
+        rm invision_environment.tfvars
+    }
+
+    tfd () {
+        generateInvEnvTfVars && \
+        terraform destroy -refresh=true && \
+        removeInvEnvTfVars
     }
 
     tfi () {
@@ -24,34 +27,21 @@ if [ -d "$INVISION_PATH" ]; then
     }
 
     tfpp () {
-        local NAMES_FILE="invision_app_names.tfvars"
-        local VERSIONS_FILE="invision_app_versions.tfvars"
-
-        terraform plan \
-            -var="environment_id=$(terraform workspace show)" \
-            -var-file="$NAMES_FILE" \
-            -var-file="$VERSIONS_FILE" \
-            -out plan.tfplan
+        generateInvEnvTfVars && \
+        terraform plan -out plan.tfplan && \
+        removeInvEnvTfVars
     }
 
     tfpr () {
-        local NAMES_FILE="invision_app_names.tfvars"
-        local VERSIONS_FILE="invision_app_versions.tfvars"
-
-        terraform refresh \
-            -var="environment_id=$(terraform workspace show)" \
-            -var-file="$NAMES_FILE" \
-            -var-file="$VERSIONS_FILE"
+        generateInvEnvTfVars && \
+        terraform refresh && \
+        removeInvEnvTfVars
     }
 
     tfpv () {
-        local NAMES_FILE="invision_app_names.tfvars"
-        local VERSIONS_FILE="invision_app_versions.tfvars"
-
-        terraform validate \
-            -var="environment_id=$(terraform workspace show)" \
-            -var-file="$NAMES_FILE" \
-            -var-file="$VERSIONS_FILE"
+        generateInvEnvTfVars && \
+        terraform validate && \
+        removeInvEnvTfVars
     }
 
     tfwsi () {

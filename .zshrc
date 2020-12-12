@@ -95,6 +95,10 @@ fi
 #     source "$DOTFILES_PATH/integrations/fzf-completion.sh"
 # fi
 
+# Include 1Password completion
+eval "$(op completion zsh)";
+compdef _op op
+
 # Include Git completion
 zstyle ':completion:*:*:git:*' script "$DOTFILES_PATH/integrations/git-completion.bash"
 fpath=("$DOTFILES_PATH/integrations" $fpath)

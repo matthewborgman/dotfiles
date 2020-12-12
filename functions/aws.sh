@@ -8,8 +8,7 @@ awsauth() {
 
         echo '`awsauth` requires the name of a Okta/AWS profile to use.'
     else
-
-        okta-awscli --okta-profile "$1" --profile "$1"
+        okta-awscli --okta-profile "$1" --profile "$1" --password "$(1prp Okta)"
 
         wait
 

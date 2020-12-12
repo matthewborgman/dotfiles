@@ -2,9 +2,9 @@
 
 # Define custom 1Password-related functions
 
-## Sign-in to 1Password account
+## Sign-in to 1Password account, reusing an existing session if active
 1pauth() {
-    eval $(op signin matthewborgman)
+    eval $(op signin matthewborgman --session "${OP_SESSION_matthewborgman}")
 }
 
 ## Retrieve the password for the given item

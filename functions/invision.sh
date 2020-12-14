@@ -15,13 +15,16 @@ if [ -d "$INVISION_PATH" ]; then
     invdkr ()   { cd ${INVISION_VERSION_PATH}/docker; }            # invdkr:   Change to the Invision Docker directory
     inve2e ()   { cd ${INVISION_VERSION_PATH}/E2E; }               # inve2e:   Change to the Invision E2E directory
     invr ()     { cd ${INVISION_VERSION_PATH}/Reporting; }         # invr:     Change to the Invision Reporting directory
-    invrct ()   { cd ${INVISION_VERSION_PATH}/invision; }            # invrct:   Change to the Invision React directory
+    invrct ()   { cd ${INVISION_VERSION_PATH}/invision; }          # invrct:   Change to the Invision React directory
     invsec ()   { cd ${INVISION_VERSION_PATH}/Security; }          # invsec:   Change to the Invision Security directory
     invstc ()   { cd ${INVISION_VERSION_PATH}/Static; }            # invstc:   Change to the Invision Static directory
     invstr ()   { cd ${INVISION_VERSION_PATH}/Starter; }           # invstr:   Change to the Invision Starter directory
     invstu ()   { cd ${INVISION_VERSION_PATH}/Studio; }            # invstu:   Change to the Invision Studio directory
     invt ()     { cd ${INVISION_VERSION_PATH}/Tools; }             # invt:     Change to the Invision Tools directory
     invui ()    { cd ${INVISION_VERSION_PATH}/UI; }                # invui:    Change to the Invision UI directory
+
+    invenv ()   { cd ${INVISION_VERSION_PATH}/invision-environment; }   # invenv: Change to the Invision Environment directory
+    invppl ()   { cd ${INVISION_VERSION_PATH}/pipeline-template; }      # invppl: Change to the Invision Pipelines Template directory
 
     ## Add a distribution tag to the given module and version
     ndta () {

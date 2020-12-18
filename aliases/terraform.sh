@@ -6,6 +6,7 @@ source "${DOTFILES_PATH}/functions/bootstrap.sh"
 
 if commandExists terraform; then
 
+    alias tf='terraform'                # tf:   Execute Terraform
     alias tffu='terraform force-unlock' # tffu: Unlock Terrafom state
     alias tfs='terraform state'         # tfs:  Manage state
     alias tfv='terraform validate'      # tfv:  Validate Terraform files

@@ -8,6 +8,12 @@ awsauth() {
 
         echo '`awsauth` requires the name of a Okta/AWS profile to use.'
     else
+        echo "Retrieving Okta credentials from 1Password...\n"
+        1pauth
+
+        wait
+
+        echo "Authenticating with Okta...\n"
         okta-awscli --okta-profile "$1" --profile "$1" --password "$(1prp Okta)"
 
         wait
@@ -19,9 +25,8 @@ awsauth() {
             export AWS_ACCOUNT_ID=$(echo $RESULT | jq -r ".Account")
             export AWS_PROFILE="$1"
 
-            echo "\n Successfully authenticated using profile \"$1\". Current identity:\n"
+            echo "Successfully authenticated using profile \"$1\". Current identity:\n"
             echo $RESULT | bat --language json
-            echo "\n"
         fi
     fi
 }

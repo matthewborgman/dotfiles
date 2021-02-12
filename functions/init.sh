@@ -20,15 +20,10 @@ init() {
         killall Dock
 
     # Enable QuickLook plugins
-    local CURRENT_PATH="$PWD"
-
     if [ ! -d "$HOME/Library/QuickLook" ]; then
         mkdir "$HOME/Library/QuickLook"
     fi
 
-    cd "$HOME/Library/QuickLook" &&
-        find "$DOTFILES_PATH/miscellaneous/quicklook_plugins" -depth 1 -type d -exec ln -fs {} . ';'
+    find "$DOTFILES_PATH/miscellaneous/quicklook_plugins" -depth 1 -type d -exec ln -fs {} "$HOME/Library/QuickLook" ';' &&
         qlmanage -r
-
-    cd "$CURRENT_PATH"
 }

@@ -34,3 +34,7 @@ export PS1=' %F{#81a2be}%~%f%F{#8abeb7}$(__git_ps1 " (%s)")%f%F{#f0c674}$(terraf
 
 ## Configure third-party scripts in the bin/ directory
 export BAT_THEME="Monokai Extended Light"
+
+# Configure "AWS" plugin in the prompt
+export ZSH_THEME_AWS_PREFIX="❮aws:"
+export ZSH_THEME_AWS_SUFFIX="❯"

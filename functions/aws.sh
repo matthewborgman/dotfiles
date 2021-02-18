@@ -6,14 +6,14 @@
 awsauth() {
     if [[ -z "$1" ]]; then
 
-        echo '`awsauth` requires the name of a Okta/AWS profile to use.'
+        echo "\`awsauth\` requires the name of a Okta/AWS profile to use.\n"
     else
         echo "Retrieving Okta credentials from 1Password...\n"
         1pauth
 
         wait
 
-        echo "Authenticating with Okta...\n"
+        echo "\nAuthenticating with Okta...\n"
         okta-awscli --okta-profile "$1" --profile "$1" --password "$(1prp Okta)"
 
         wait

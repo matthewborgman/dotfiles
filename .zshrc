@@ -133,11 +133,11 @@ if [ -e "$HOME/.ssh/config" ]; then
     complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 fi
 
-# Enable Terraform completion
+# Enable Terraform completion and prompt
 if commandExists terraform; then
 
     if ! complete -p terraform &> /dev/null; then
-        complete -C /usr/local/bin/terraform terraform
+        complete -o nospace -C /usr/local/bin/terraform terraform
     fi
 fi
 

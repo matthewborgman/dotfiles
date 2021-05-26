@@ -16,8 +16,10 @@ init() {
         killall SystemUIServer
 
     # Configure Dock
-    defaults write com.apple.dock mineffect -string scale && \
-        killall Dock
+    if [[ `defaults read com.apple.dock mineffect` != 'scale' ]]; then
+        defaults write com.apple.dock mineffect -string scale && \
+            killall Dock
+    fi
 
     # Enable QuickLook plugins
     if [ ! -d "$HOME/Library/QuickLook" ]; then

@@ -3,3 +3,4 @@ typeset -U path
 
 path+=("$DOTFILES_BIN_PATH")
 path+=("$INVISION_GLOBAL_NPM_MODULES_PATH")
+path+=("./node_modules/.bin")

@@ -36,6 +36,8 @@
 [mergetool]
 	keepBackup = true
 	prompt = false
+[pull]
+    rebase = false
 [push]
 	default = current
 	followTags = true

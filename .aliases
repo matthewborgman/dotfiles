@@ -31,7 +31,6 @@ alias ls="ls -ahl ${COLOR_FLAG} ${IGNORE_FILES_FLAG}"   # lst:      List content
 alias lst="ls -ahlt ${COLOR_FLAG} ${IGNORE_FILES_FLAG}" # lst:      List contents for the directory sorted by date modified
 alias map='xargs -n1'                                   # map:      Apply the given command to all given items
 alias path='echo -e ${PATH//:/\\n}'                     # path:     List the current paths in the environment
-alias rmnm='rm -fR node_modules'                        # rmnm:     Remove "node_modules" directory
 alias sudo='sudo '
 
 # Alias Python to Python3 if it's available
